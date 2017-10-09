@@ -38,7 +38,7 @@ Acceptance Test
 
 .. code:: bash
 
-   $ robot TodoList.rst
+   robot TodoList.rst
 
 .. code:: robotframework
 
