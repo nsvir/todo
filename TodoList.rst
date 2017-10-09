@@ -19,7 +19,9 @@ Requierement
 ------------
 
 Bottle installed and in PYTHONPATH variable
+
 .. code:: bash
+
    $pip install --target=<installed_directory> bottle
    $export PYTHONPATH=<installed_directory>
 
@@ -28,10 +30,15 @@ Launching
 -----------
 
 .. code:: bash
+
    $python ./src/main.py
 
 Acceptance Test
 ===============
+
+.. code:: bash
+
+   $ robot TodoList.rst
 
 .. code:: robotframework
 
