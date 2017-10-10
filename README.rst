@@ -19,8 +19,16 @@ Install dependencies
 --------------------
 
 .. code:: bash
-
    pip install -r requirements.txt
+
+=======
+   sudo pip install -r requirements.txt
+
+Or if you have no root permissions:
+
+.. code:: bash
+
+   pip install -r requirements.txt --user
 
 
 Launching
@@ -29,6 +37,20 @@ Launching
 .. code:: bash
 
    python ./src/main.py
+
+
+Launching unit test and coverage
+-----------
+
+.. code:: bash
+
+  nosetests --with-coverage --cover-erase --cover-branches --with-doctest test
+
+  .. code:: bash
+
+     nosetests --with-coverage --cover-erase --cover-branches --with-doctest --cover-package=somme -v test/test_somme.py
+
+
 
 Acceptance Test
 ===============
