@@ -21,7 +21,7 @@ Install dependencies
 .. code:: bash
 
    pip install -r requirements.txt
-   
+
 
 Launching
 -----------
