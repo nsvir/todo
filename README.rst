@@ -35,7 +35,7 @@ Acceptance Test
 
 .. code:: bash
 
-   python -m robot TodoList.rst
+   python -m robot README.rst
 
 .. code:: robotframework
 
