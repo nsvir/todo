@@ -15,10 +15,8 @@ Introduction
 Execution
 =========
 
-Requierement
-------------
-
-Bottle installed and in PYTHONPATH variable
+Install dependencies
+--------------------
 
 .. code:: bash
 
