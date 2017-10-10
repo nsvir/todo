@@ -22,9 +22,8 @@ Bottle installed and in PYTHONPATH variable
 
 .. code:: bash
 
-   pip install --target=<installed_directory> bottle
-   export PYTHONPATH=<installed_directory>
-
+   pip install -r requirements.txt
+   
 
 Launching
 -----------
@@ -38,7 +37,7 @@ Acceptance Test
 
 .. code:: bash
 
-   robot TodoList.rst
+   python -m robot TodoList.rst
 
 .. code:: robotframework
 
