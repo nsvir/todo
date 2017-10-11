@@ -21,7 +21,6 @@ Install dependencies
 .. code:: bash
    pip install -r requirements.txt
 
-=======
    sudo pip install -r requirements.txt
 
 Or if you have no root permissions:
