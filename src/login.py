@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import Bottle, request, template
 
 loginApp = Bottle()
 
@@ -7,9 +7,12 @@ tasks = []
 
 @loginApp.route('/hello')
 def hello():
-        global count
-        count = count + 1
-        return 'You have %d things.' % count
+        result = ['ok']
+        output = template('/web/tpl/make', rows=result)
+        return output
+        # global count
+        # count = count + 1
+        # return 'You have %d things.' % count
 
 @loginApp.get('/login') # or @route('/login')
 def login():
