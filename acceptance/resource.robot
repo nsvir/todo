@@ -10,9 +10,7 @@ Library           Selenium2Library
 ${SERVER}         localhost:8080
 ${BROWSER}        Firefox
 ${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
-${TODO URL}      http://${SERVER}/todo
+${TODO URL}       http://${SERVER}/
 ${WELCOME URL}    http://${SERVER}/welcome.html
 ${ERROR URL}      http://${SERVER}/error.html
 
