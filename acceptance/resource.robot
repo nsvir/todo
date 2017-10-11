@@ -15,6 +15,7 @@ ${VALID PASSWORD}    mode
 ${TODO URL}      http://${SERVER}/todo
 ${WELCOME URL}    http://${SERVER}/welcome.html
 ${ERROR URL}      http://${SERVER}/error.html
+${TASKS URL}      http://${SERVER}/tasks
 
 *** Keywords ***
 Open Browser To Todo Page
@@ -22,6 +23,11 @@ Open Browser To Todo Page
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Todo Page Should Be Open
+
+Open Browser To Tasks Page
+    Open Browser    ${TASKS URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
 
 Todo Page Should Be Open
     Title Should Be    Todo Page
@@ -37,6 +43,10 @@ Input Username
 Input Password
     [Arguments]    ${password}
     Input Text    password_field    ${password}
+
+Input Text
+    [Arguments]    ${name}
+    Input Text    inputList    ${name}
 
 Submit Credentials
     Click Button    login_button
