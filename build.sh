@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-junks='*.png *.log *.pyc *.xml *.pyc __pycache__'
+junks='*.png *.log *.pyc *.xml *.html *.pyc __pycache__'
 
 case $1 in
     clean)
