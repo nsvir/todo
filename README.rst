@@ -27,7 +27,7 @@ Or if you have no root permissions:
 
 .. code:: bash
 
-   pip install -r requirements.txt --user
+   pip --pre install -r requirements.txt --user
 
 
 Launching
