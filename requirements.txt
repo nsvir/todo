@@ -1,4 +1,5 @@
 robotframework-selenium2library
 robotframework
+selenium
 bottle
 
