@@ -7,8 +7,8 @@
 
 <div id="menu">
     <h3>Listes</h3>
-        <input type="text" id="inputListe" placeholder="Nouvelle Liste">
-    <a onclick="this.href='addList/'+document.getElementById('inputListe').value"><span class="addBtn" id="addList">+</span></a>
+        <input type="text" id="inputListe" name="inputListe" placeholder="Nouvelle Liste">
+    <a onclick="this.href='addList/'+document.getElementById('inputListe').value"><span class="addBtn" id="addList" name="addList">+</span></a>
     </br>
     %for row in lists:
       <ul id="myList">

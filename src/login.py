@@ -1,5 +1,11 @@
 from bottle import Bottle, request, template, debug, static_file
 import os, sys
+from list_todo import *
+from list_todo_service import *
+
+listTodo = ListTodo()
+listTodoService = ListTodoService(listTodo)
+
 loginApp = Bottle()
 
 count = 1
@@ -18,7 +24,7 @@ def static_js(path):
 @loginApp.route('/tasks')
 def hello():
     result = ['ok']
-    lists = ['list1', 'list2']
+    lists = listTodoService.get_list()
     listname = 'list1'
     output = template('src/web/template/make.tpl', rows=result, lists=lists, list=listname)
     return output

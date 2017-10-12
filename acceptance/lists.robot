@@ -2,22 +2,22 @@
 Documentation     A test suite with a list add style test.
 ...
 ...               This test has a workflow that is created
-using keywords in the imported resource file.
 Resource          resource.robot
 
 *** Test Cases ***
 Valid Login
     Given browser is opened to tasks page
     When user write a new list "mode"
-    Then list is created
+    Then Page Should Contain "mode"
 
 *** Keywords ***
 Browser is opened to tasks page
     Open Browser To Tasks Page
 
 User write a new list "${name}"
-    Input Text id=inputList    ${name}
-    Click element id=addList
+    Input List    ${name}
+    Click Addlist
 
-List is created
+Page Should Contain "${name}"
+    Page Should Contain    ${name}
 

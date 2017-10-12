@@ -8,7 +8,7 @@ Library           Selenium2Library
 
 *** Variables ***
 ${SERVER}         localhost:8080
-${BROWSER}        Firefox
+${BROWSER}        Chrome
 ${DELAY}          0
 ${TODO URL}       http://${SERVER}/
 ${WELCOME URL}    http://${SERVER}/welcome.html
@@ -18,7 +18,6 @@ ${TASKS URL}      http://${SERVER}/tasks
 *** Keywords ***
 Open Browser To Todo Page
     Open Browser    ${TODO URL}    ${BROWSER}
-    Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Todo Page Should Be Open
 
@@ -42,12 +41,20 @@ Input Password
     [Arguments]    ${password}
     Input Text    password_field    ${password}
 
-Input Text
+Input List
     [Arguments]    ${name}
-    Input Text    inputList    ${name}
+    Input Text    inputListe        ${name}
 
 Submit Credentials
     Click Button    login_button
+
+
+Click Addlist
+    Click Element    addList
+
+Page Should Contain
+    [Arguments]    ${name}
+    Page Should Contain    ${name}
 
 Welcome Page Should Be Open
     Location Should Be    ${WELCOME URL}

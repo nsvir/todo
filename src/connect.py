@@ -20,14 +20,14 @@ def create_connection():
     return None
 
 
-def select_all_tasks(conn):
+def select_all_lists(conn):
     """
     Query all rows in the tasks table
     :param conn: the Connection object
     :return:
     """
     cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks")
+    cur.execute("SELECT * FROM lists")
 
     rows = cur.fetchall()
 
