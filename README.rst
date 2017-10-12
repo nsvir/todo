@@ -68,3 +68,14 @@ Acceptance Test
    She write a task
    She click submit
    She see the task in the list
+
+   *** Test Case ***
+   User can add a List
+    When he writes a list
+    And he clicks submit
+    Then he see the list in the list
+
+   *** Keywords ***
+   He write a list
+   He click submit
+   He see the list in the list

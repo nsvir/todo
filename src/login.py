@@ -1,18 +1,27 @@
-from bottle import Bottle, request, template
-
+from bottle import Bottle, request, template, debug, static_file
+import os, sys
 loginApp = Bottle()
 
 count = 1
 tasks = []
+dirname = os.path.dirname(sys.argv[0])
+debug(True)
 
-@loginApp.route('/hello')
+@loginApp.route('/css/:path')
+def static_css(path):
+    return static_file(path, root="src/web/css/")
+
+@loginApp.route('/js/:path')
+def static_js(path):
+    return static_file(path, root="src/web/js/")
+
+@loginApp.route('/tasks')
 def hello():
-        result = ['ok']
-        output = template('/web/tpl/make', rows=result)
-        return output
-        # global count
-        # count = count + 1
-        # return 'You have %d things.' % count
+    result = ['ok']
+    lists = ['list1', 'list2']
+    listname = 'list1'
+    output = template('src/web/template/make.tpl', rows=result, lists=lists, list=listname)
+    return output
 
 @loginApp.get('/login') # or @route('/login')
 def login():
