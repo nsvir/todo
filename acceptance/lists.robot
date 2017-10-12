@@ -2,8 +2,7 @@
 Documentation     A test suite with a list add style test.
 ...
 ...               This test has a workflow that is created
-using keywords in
-...               the imported resource file.
+using keywords in the imported resource file.
 Resource          resource.robot
 
 *** Test Cases ***

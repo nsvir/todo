@@ -45,9 +45,9 @@ Launching unit test and coverage
 
   nosetests --with-coverage --cover-erase --cover-branches --with-doctest test
 
+.. code:: bash
+
   nosetests --with-coverage --cover-erase --cover-branches --with-doctest --cover-package=somme -v test/test_somme.py
-
-
 
 Acceptance Test
 ===============

@@ -1,5 +1,6 @@
-*.html
-*.xml
+log.html
+report.html
+output.xml
 *.pyc
 *.log
 *.png
