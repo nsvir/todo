@@ -1,6 +1,6 @@
 from bottle import Bottle
 from login import loginApp
-from controller.manage_list import listApp
+from init import listApp
 
 rootApp = Bottle()
 

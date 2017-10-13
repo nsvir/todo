@@ -1,9 +1,12 @@
 import os.path
+from init import *
 from db.connect import *
 from model.list_todo import *
 from service.list_todo_service import *
 
 from repository.list_repository import *
+from controller.manage_list import *
+
 
 #Initialization
 
@@ -17,3 +20,9 @@ conn = connection.create_connection(db_path)
 listRepository = ListRepository(conn)
 listTodo = ListTodo()
 listTodoService = ListTodoService(listRepository, listTodo)
+
+listApp = Bottle()
+
+myapp = ManageList(listService=listTodoService)
+listApp.route("/addList/:listname")(myapp.addList)
+listApp.route("/listSettings/:listname")(myapp.listSettings)
