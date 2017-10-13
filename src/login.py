@@ -1,10 +1,8 @@
 from bottle import Bottle, request, template, debug, static_file
 import os, sys
-from list_todo import *
-from list_todo_service import *
 
-listTodo = ListTodo()
-listTodoService = ListTodoService(listTodo)
+from init import *
+
 
 loginApp = Bottle()
 

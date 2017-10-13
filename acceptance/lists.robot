@@ -5,7 +5,7 @@ Documentation     A test suite with a list add style test.
 Resource          resource.robot
 
 *** Test Cases ***
-Valid Login
+Add a list
     Given browser is opened to tasks page
     When user write a new list "mode"
     Then List Should Contain "mode"
