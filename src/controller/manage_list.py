@@ -9,8 +9,14 @@ debug(True)
 """
 Controller to manage list todo
 """
+class ManageList:
+    def __init__(self, listTodoService):
+        self.listTodoService = listTodoService
 
-@listApp.route('/addList/:listname')
-def addList(listname):
-    listTodoService.add_list(listname)
-    redirect("/")
+    def addList(self, listname):
+        print("ok")
+        listTodoService.add_list(listname)
+        print('here')
+
+myapp = ManageList(listTodoService=listTodoService)
+listApp.route("/addList/:listname")(myapp.addList)
