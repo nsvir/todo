@@ -11,6 +11,12 @@ Add a list
     Then List Should Contain "mode"
     [Teardown]    Close Browser
 
+Want configure a list
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    When user click on settings button of list "liste"
+    Then browser is opened to settings page of list "liste"
+
 *** Keywords ***
 Browser is opened to tasks page
     Open Browser To Tasks Page
@@ -22,3 +28,13 @@ User write a new list "${name}"
 List Should Contain "${name}"
     Page Should Contain    ${name}
 
+List "${liste}" Already Created
+    Open Browser To Tasks Page
+    Input List    ${liste}
+    Click Button AddList
+
+User Click On Settings Button Of List "liste"
+    Click Button SetListListe
+
+Browser is opened to settings page of list "liste"
+    Open Browser to SettingsListe Page

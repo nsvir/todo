@@ -11,10 +11,16 @@ ${SERVER}         localhost:8080
 ${BROWSER}        Firefox
 ${DELAY}          0
 ${TASKS URL}      http://${SERVER}/
+${SETTINGS LISTE URL}      http://${SERVER}/listSettings/liste
 
 *** Keywords ***
 Open Browser To Tasks Page
     Open Browser    ${TASKS URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+
+Open Browser to SettingsListe Page
+    Open Browser    ${SETTINGS LISTE URL}    ${BROWSER}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
@@ -31,3 +37,6 @@ Click Button AddList
 
 Click Button AddTask
     Click Element    addTask
+
+Click Button SetListListe
+    Click Element    list_liste
