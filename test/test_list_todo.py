@@ -1,5 +1,5 @@
 import unittest
-from list_todo import *
+from model.list_todo import *
 
 class TestInitListTodo(unittest.TestCase):
 

@@ -19,4 +19,7 @@ class ListRepository:
             cur = self.connection.cursor()
             cur.execute("SELECT * from lists")
             rows = cur.fetchall()
-            return list(rows)
+            lst = []
+            for row in rows:
+                lst.append(row[0])
+            return lst

@@ -1,6 +1,6 @@
 import unittest
 import mockito
-from list_todo_service import *
+from service.list_todo_service import *
 
 class TestAddListTodoService(unittest.TestCase):
 
