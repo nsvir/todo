@@ -17,7 +17,7 @@ Browser is opened to tasks page
 
 User write a new list "${name}"
     Input List    ${name}
-    Click Addlist
+    Click Button AddList
 
 List Should Contain "${name}"
     Page Should Contain    ${name}

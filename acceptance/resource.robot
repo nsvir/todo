@@ -22,5 +22,12 @@ Input List
     [Arguments]    ${name}
     Input Text    inputListe        ${name}
 
-Click Addlist
+Input Task
+    [Arguments]    ${name}
+    Input Text    inputTask        ${name}
+
+Click Button AddList
     Click Element    addList
+
+Click Button AddTask
+    Click Element    addTask

@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="css/index.css">
+  <title>SuperTodo Application</title>
 </head>
 <body>
 
@@ -22,8 +23,11 @@
 <div id="todo">
 <div id="myDIV" class="header">
   <h2>{{list}} - Tâches</h2>
-  <input type="text" id="myInput" placeholder="Nouvelle Tâche">
-  <a href="#"><span class="addBtn">+</span></a>
+  <form action="/">
+    <input id="inputTask" type="text" placeholder="Enter a task" value="">
+    <input id="addTask" type="submit" value="Submit">
+  </form>
+
 </div>
 
 %for row in rows:

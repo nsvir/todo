@@ -8,11 +8,11 @@ case $1 in
 	for junk in $junks
 	do find "$BASEDIR" -name "$junk" -exec rm -rfv {} 2>/dev/null \;
 	done;;
-    acceptance)
+    acceptance*)
 	[ ! $(which chromedriver) ] \
 	    && echo "You need to install chromedriver" \
 	    && exit
-	python -m robot "$BASEDIR/acceptance";;
+	python -m robot "$BASEDIR/$1";;
     test)
 	nosetests --with-coverage \
 	       --cover-erase --cover-branches \

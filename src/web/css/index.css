@@ -27,6 +27,22 @@ ul {
     padding: 0;
 }
 
+#inputTask {
+    float: left;
+    width: 80%;
+}
+
+#addTask {
+    float: right;
+    width: 20%;
+}
+
+
+#personal-info {
+    float: right;
+    width: 50%;
+}
+
 /* Style the list items */
 ul li {
     cursor: pointer;
@@ -101,7 +117,7 @@ input[type=checkbox] {
 
 /* Style the header */
 .header {
-    background-color: #337FFF;
+    background-color: #aaaaaa;
     padding: 30px 40px;
     color: white;
     text-align: center;
