@@ -14,9 +14,8 @@ class ManageList:
         self.listTodoService = listTodoService
 
     def addList(self, listname):
-        print("ok")
         listTodoService.add_list(listname)
-        print('here')
+        redirect("/")
 
 myapp = ManageList(listTodoService=listTodoService)
 listApp.route("/addList/:listname")(myapp.addList)

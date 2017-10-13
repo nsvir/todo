@@ -16,7 +16,7 @@
         <a href="#"><li>
             {{row}}
             <a href="#"><span class="close">×</span></a>
-            <a onclick="this.href='listSettings/{{row}}'"><span class="edit">✎</span></a>
+            <a onclick="this.href='listSettings/{{row}}'"><span class="edit" name="list_{{row}}">✎</span></a>
         </li></a>
       </ul>
     %end
