@@ -8,7 +8,8 @@ Resource          resource.robot
 Valid Login
     Given browser is opened to tasks page
     When user write a new list "mode"
-    Then Page Should Contain "mode"
+    Then List Should Contain "mode"
+    [Teardown]    Close Browser
 
 *** Keywords ***
 Browser is opened to tasks page
@@ -18,6 +19,6 @@ User write a new list "${name}"
     Input List    ${name}
     Click Addlist
 
-Page Should Contain "${name}"
+List Should Contain "${name}"
     Page Should Contain    ${name}
 

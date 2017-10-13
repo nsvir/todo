@@ -10,52 +10,17 @@ Library           Selenium2Library
 ${SERVER}         localhost:8080
 ${BROWSER}        Chrome
 ${DELAY}          0
-${TODO URL}       http://${SERVER}/
-${WELCOME URL}    http://${SERVER}/welcome.html
-${ERROR URL}      http://${SERVER}/error.html
-${TASKS URL}      http://${SERVER}/tasks
+${TASKS URL}      http://${SERVER}/
 
 *** Keywords ***
-Open Browser To Todo Page
-    Open Browser    ${TODO URL}    ${BROWSER}
-    Set Selenium Speed    ${DELAY}
-    Todo Page Should Be Open
-
 Open Browser To Tasks Page
     Open Browser    ${TASKS URL}    ${BROWSER}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
-Todo Page Should Be Open
-    Title Should Be    Todo Page
-
-Go To Login Page
-    Go To    ${LOGIN URL}
-    Login Page Should Be Open
-
-Input Username
-    [Arguments]    ${username}
-    Input Text    username_field    ${username}
-
-Input Password
-    [Arguments]    ${password}
-    Input Text    password_field    ${password}
-
 Input List
     [Arguments]    ${name}
     Input Text    inputListe        ${name}
 
-Submit Credentials
-    Click Button    login_button
-
-
 Click Addlist
     Click Element    addList
-
-Page Should Contain
-    [Arguments]    ${name}
-    Page Should Contain    ${name}
-
-Welcome Page Should Be Open
-    Location Should Be    ${WELCOME URL}
-    Title Should Be    Welcome Page

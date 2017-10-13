@@ -12,4 +12,4 @@ debug(True)
 @listApp.route('/addList/:listname')
 def addList(listname):
     listTodoService.add_list(listname)
-    redirect("/tasks")
+    redirect("/")

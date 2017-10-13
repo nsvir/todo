@@ -21,7 +21,7 @@ def static_css(path):
 def static_js(path):
     return static_file(path, root="src/web/js/")
 
-@loginApp.route('/tasks')
+@loginApp.route('/')
 def hello():
     result = ['ok']
     lists = listTodoService.get_list()
