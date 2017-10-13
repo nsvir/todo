@@ -1,13 +1,14 @@
 from bottle import Bottle, request, template, debug, static_file, redirect
 import os, sys
-from list_todo import *
-from list_todo_service import *
+from init import *
 
 listApp = Bottle()
-listTodo = ListTodo()
-listTodoService = ListTodoService(listTodo)
 
 debug(True)
+
+"""
+Controller to manage list todo
+"""
 
 @listApp.route('/addList/:listname')
 def addList(listname):
