@@ -9,17 +9,17 @@ case $1 in
 	do find "$BASEDIR" -name "$junk" -exec rm -rfv {} 2>/dev/null \;
 	done;;
     acceptance)
-	[ ! $(which geckodriver) ] \
-	    && echo "geckodriver must be installed and in \$PATH\nhttps://github.com/mozilla/geckodriver/releases" \
+	[ ! $(which chromedriver) ] \
+	    && echo "You need to install chromedriver" \
 	    && exit
 	python -m robot "$BASEDIR/acceptance";;
     test)
 	nosetests --with-coverage \
 	       --cover-erase --cover-branches \
 	       --with-doctest "$BASEDIR"/test;;
-    run | *)
-	python "$BASEDIR"/src/main.py;;
     help)
 	echo "$0 clean acceptance test run"
 	;;
+    run | *)
+	python "$BASEDIR"/src/main.py;;
 esac
