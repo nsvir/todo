@@ -16,7 +16,6 @@ ${SETTINGS LISTE URL}      http://${SERVER}/listSettings/liste
 *** Keywords ***
 Open Browser To Tasks Page
     Open Browser    ${TASKS URL}    ${BROWSER}
-    Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
 Open Browser to SettingsListe Page
