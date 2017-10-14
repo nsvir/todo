@@ -24,6 +24,10 @@ Open Browser to SettingsListe Page
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
+Go to SettingsListe Page
+    Go To    ${SETTINGS LISTE URL}  
+    Set Selenium Speed    ${DELAY}
+
 Input List
     [Arguments]    ${name}
     Input Text    inputListe        ${name}
@@ -40,3 +44,6 @@ Click Button AddTask
 
 Click Button SetListListe
     Click Element    list_liste
+
+Click Button SubmitSettingsListe
+    Click Element    settings_submit

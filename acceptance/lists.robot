@@ -17,6 +17,13 @@ Want configure a list
     When user click on settings button of list "liste"
     Then browser is opened to settings page of list "liste"
 
+Configure a list
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    When user submit setting form without change
+    Then browser is opened to settings page of list "liste" without change
+
 *** Keywords ***
 Browser is opened to tasks page
     Open Browser To Tasks Page
@@ -37,4 +44,10 @@ User Click On Settings Button Of List "liste"
     Click Button SetListListe
 
 Browser is opened to settings page of list "liste"
-    Open Browser to SettingsListe Page
+    Go to SettingsListe Page
+
+User Submit Setting Form Without Change
+    Click Button SubmitSettingsListe
+
+Browser Is Opened To Settings Page Of List "liste" Without Change
+    Wait Until Page Contains      Enregistré       5s
