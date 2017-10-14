@@ -18,16 +18,18 @@ Execution
 Install dependencies
 --------------------
 
-.. code:: bash
-   pip install -r requirements.txt
+This project use python3!
 
-   sudo pip install -r requirements.txt
+.. code:: bash
+   pip3 install -r requirements.txt
+
+   sudo pip3 install -r requirements.txt
 
 Or if you have no root permissions:
 
 .. code:: bash
 
-   pip --pre install -r requirements.txt --user
+   pip3 --pre install -r requirements.txt --user
 
 
 Launching
