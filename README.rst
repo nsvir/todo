@@ -85,10 +85,12 @@ Acceptance Test
 Architecture
 ============
 
-src
-├── controller	(manage the routes and redirect to the service; initialized in init.py)
-├── db		(directory of the database used by repository)
-├── model	(objects representing the data)
-├── repository	(function to save the data in the database)
-├── service	(function doing the work)
-└── web		(static pages: css / templates / etc.)
+.. code:: bash
+
+	src
+	├── controller	(manage the routes and redirect to the service; initialized in init.py)
+	├── db		(directory of the database used by repository)
+	├── model	(objects representing the data)
+	├── repository	(function to save the data in the database)
+	├── service	(function doing the work)
+	└── web		(static pages: css / templates / etc.)
