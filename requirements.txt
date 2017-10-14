@@ -1,3 +1,6 @@
+nose
+mockito
+coverage
 robotframework-selenium2library
 robotframework
 selenium

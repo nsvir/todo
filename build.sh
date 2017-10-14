@@ -18,10 +18,8 @@ case $1 in
 	    && echo "You need to install chromedriver" \
 	    && exit
 	python -m robot "$BASEDIR/$1";;
-    test)
-	nosetests --with-coverage \
-	       --cover-erase --cover-branches \
-	       --with-doctest "$BASEDIR"/test;;
+    test*)
+	nosetests "$BASEDIR"/$1;;
     help)
 	echo "$0 clean acceptance test run"
 	;;
