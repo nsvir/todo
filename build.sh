@@ -2,6 +2,11 @@
 
 junks='*.png *.log *.pyc *.xml *.html *.pyc __pycache__'
 BASEDIR=${0%/*}
+cd $BASEDIR
+
+installDB() {
+    sqlite3 "$BASEDIR"/src/db/todo.db < "$BASEDIR"/src/db/create.sql
+}
 
 case $1 in
     clean)
@@ -21,5 +26,6 @@ case $1 in
 	echo "$0 clean acceptance test run"
 	;;
     run | *)
+	[ ! -f "$BASEDIR"/src/db/todo.db ] && installDB
 	python "$BASEDIR"/src/main.py;;
 esac

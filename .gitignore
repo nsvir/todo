@@ -6,3 +6,4 @@ output.xml
 *.png
 .coverage
 *.db
+*.db-journal
