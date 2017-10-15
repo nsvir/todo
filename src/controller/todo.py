@@ -9,7 +9,7 @@ Controller to redirect todo requests
 class TodoApp():
 
     def __init__(self, listTodoService, \
-                todoService = TodoService(), template = template, \
+                todoService, template = template, \
                 request = request, redirect = redirect):
         self.service = todoService
         self.template = template

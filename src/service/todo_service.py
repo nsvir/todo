@@ -1,15 +1,18 @@
 from model.Task import Task
+from repository.TodoDatabase import TodoDatabase
 """
 
 """
 class TodoService():
 
-    def __init__(self):
-        self.todoDatabase = None
-        self.tasks = []
+    def __init__(self, todoDatabase):
+        self.todoDatabase = todoDatabase
+        self.tasks = todoDatabase.retrieve()
 
     def addTask(self, taskName):
-        self.tasks.append(Task(taskName))
+        taskObject = Task(taskName)
+        self.tasks.append(taskObject)
+        self.todoDatabase.add(taskObject)
 
     def getTask(self, taskName):
         elementsMatching = list(filter(lambda task: task.name() == taskName, self.tasks))
@@ -18,12 +21,15 @@ class TodoService():
         return None
 
     def removeTask(self, taskName):
-        self.tasks = list(filter(lambda taskInList: taskName != taskInList.name(), self.tasks))
+        taskObject = self.getTask(taskName)
+        self.todoDatabase.delete(taskObject)
+        self.tasks.remove(taskObject)
 
     def checkTask(self, taskName):
         task = self.getTask(taskName)
         if not task is None:
             self.getTask(taskName).setIsDone()
+            self.todoDatabase.update(task)
 
     def getTasks(self):
         return self.tasks;
