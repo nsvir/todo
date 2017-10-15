@@ -11,7 +11,7 @@ class TestTodoController(unittest.TestCase):
         form = Mock()
         todoService = Mock()
         redirect = Mock()
-        todoApp = TodoApp(listTodoServer = Mock(), todoService = todoService, request = request, redirect = redirect)
+        todoApp = TodoApp(listTodoService = Mock(), todoService = todoService, request = request, redirect = redirect)
         todoApp.addTask(taskTest)
         todoService.addTask.assert_called_once_with(taskTest)
         redirect.assert_called_once_with("/")
@@ -23,9 +23,25 @@ class TestTodoController(unittest.TestCase):
         form = Mock()
         todoService = Mock()
         redirect = Mock()
-        todoApp = TodoApp(listTodoServer = Mock(), todoService = todoService, request = request, redirect = redirect)
+        todoApp = TodoApp(listTodoService = Mock(), todoService = todoService, request = request, redirect = redirect)
         todoApp.addTask(taskTest)
         todoApp.removeTask(taskTest)
         todoService.removeTask.assert_called_once_with(taskTest)
         redirect.assert_called()
         self.assertEqual(2, redirect.call_count)
+
+    def test_check_a_task_controller(self):
+        request = Mock()
+        taskTest = "test"
+        form = Mock()
+        todoService = Mock()
+        redirect = Mock()
+        todoApp = TodoApp(listTodoService = Mock(), todoService = todoService, request = request, redirect = redirect)
+        todoApp.checkTask(taskTest)
+        todoService.checkTask.assert_called_once_with(taskTest)
+        redirect.assert_called_once_with("/")
+
+    def test_home_returns_template(self):
+        template_mock = Mock(return_value="mocked stuff")
+        html_page = TodoApp(template = template_mock, listTodoService = Mock()).home()
+        template_mock.assert_called_once()

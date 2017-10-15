@@ -8,20 +8,20 @@ Controller to redirect todo requests
 """
 class TodoApp():
 
-    def __init__(self, listTodoServer, \
-                todoService = TodoService(), template = template, \
+    def __init__(self, listTodoService, \
+                todoService, template = template, \
                 request = request, redirect = redirect):
         self.service = todoService
         self.template = template
-        self.listTodoServer = listTodoServer
+        self.listTodoService = listTodoService
         self.request = request
         self.redirect = redirect
 
     def home(self):
         self.listTodoService.remove_desable_lists()
         tasks = self.service.getTasks()
-        lists = self.listTodoServer.get_list_name()
-        output = self.template('src/web/template/make.tpl', rows=tasks, lists=lists, list=None)
+        lists = self.listTodoService.get_list_name()
+        output = self.template('src/web/template/make.tpl', tasks=tasks, lists=lists, list=None)
         return output
 
     def addTask(self, task):
@@ -30,4 +30,8 @@ class TodoApp():
 
     def removeTask(self, task):
         self.service.removeTask(task)
+        self.redirect("/")
+
+    def checkTask(self, task):
+        self.service.checkTask(task)
         self.redirect("/")

@@ -2,11 +2,15 @@ import os.path
 from init import *
 from db.connect import *
 from model.list_todo import *
-from service.list_todo_service import *
 from controller.init import *
-from repository.list_repository import *
 from controller.manage_list import *
+
+from repository.list_repository import *
+from repository.TodoDatabase import TodoDatabase
+
+from service.list_todo_service import *
 from service.check_parameter import *
+from service.todo_service import TodoService
 
 from factory.task_list_factory import *
 from controller.todo import TodoApp
@@ -31,8 +35,10 @@ listTodo = ListTodo()
 listTodoService = ListTodoService(listRepository, listTodo)
 init = Init(listTodoService, listRepository, taskListFactory)
 init.initTodoList(listTodo)
+
 todoApp = Bottle()
-myTodoApp = TodoApp(listTodoService)
+myTodoApp = TodoApp(listTodoService, TodoService(TodoDatabase(conn)))
+
 
 
 listApp = Bottle()
@@ -47,4 +53,5 @@ listApp.route("/deleteList/:name")(myapp.deleteList)
 todoApp.route("/")(myTodoApp.home)
 todoApp.route("/addTask/:task")(myTodoApp.addTask)
 todoApp.route("/removeTask/:task")(myTodoApp.removeTask)
+todoApp.route("/taskDone/:task")(myTodoApp.checkTask)
 css.route('/css/:path')(static_css)
