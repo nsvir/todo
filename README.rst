@@ -81,3 +81,16 @@ Acceptance Test
    He write a list
    He click submit
    He see the list in the list
+
+Architecture
+============
+
+.. code:: bash
+
+	src
+	├── controller	(manage the routes and redirect to the service; initialized in init.py)
+	├── db		(directory of the database used by repository)
+	├── model	(objects representing the data)
+	├── repository	(function to save the data in the database)
+	├── service	(function doing the work)
+	└── web		(static pages: css / templates / etc.)
