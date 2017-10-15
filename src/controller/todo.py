@@ -31,3 +31,7 @@ class TodoApp():
     def removeTask(self, task):
         self.service.removeTask(task)
         self.redirect("/")
+
+    def checkTask(self, task):
+        self.service.checkTask(task)
+        self.redirect("/")

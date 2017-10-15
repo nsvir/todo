@@ -14,9 +14,30 @@ class TestTodoService(unittest.TestCase):
         self.assertEqual(1, matchedElementWithTaskToAdd)
 
     def test_remove_task_service(self):
-        taskToAdd = "my task"
+        taskToRemove = "my task"
         todoService = TodoService()
-        todoService.addTask(taskToAdd)
-        todoService.removeTask(taskToAdd)
-        matchedElementWithTaskToAdd = len(list(filter(lambda task: taskToAdd == task.name(), todoService.getTasks())))
-        self.assertEqual(0, matchedElementWithTaskToAdd)
+        todoService.addTask(taskToRemove)
+        todoService.removeTask(taskToRemove)
+        matchedElementWithTaskToRemove = len(list(filter(lambda task: taskToAdd == task.name(), todoService.getTasks())))
+        self.assertEqual(0, matchedElementWithTaskToRemove)
+
+    def test_get_existant_task_service(self):
+        taskToGet = "my task"
+        todoService = TodoService()
+        todoService.addTask(taskToGet)
+        taskResult = todoService.getTask(taskToGet)
+        self.assertEqual(taskToGet, taskResult.name())
+
+    def test_get_unexistant_task_service(self):
+        taskToGet = "my task"
+        todoService = TodoService()
+        taskResult = todoService.getTask(taskToGet)
+        self.assertEqual(None, taskResult)
+
+    def test_check_task_service(self):
+        taskToCheck = "my task"
+        todoService = TodoService()
+        todoService.addTask(taskToCheck)
+        todoService.checkTask(taskToCheck)
+        taskResult = todoService.getTask(taskToCheck)
+        self.assertTrue(taskResult.done())
