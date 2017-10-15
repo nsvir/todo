@@ -3,7 +3,6 @@ from unittest.mock import Mock
 from controller.todo import TodoApp
 from service.todo_service import TodoService
 
-
 class TestTodoService(unittest.TestCase):
 
 
@@ -11,11 +10,13 @@ class TestTodoService(unittest.TestCase):
         taskToAdd = "my task"
         todoService = TodoService()
         todoService.addTask(taskToAdd)
-        self.assertIn(taskToAdd, todoService.getTasks())
+        matchedElementWithTaskToAdd = len(list(filter(lambda task: taskToAdd == task.name(), todoService.getTasks())))
+        self.assertEqual(1, matchedElementWithTaskToAdd)
 
     def test_remove_task_service(self):
         taskToAdd = "my task"
         todoService = TodoService()
         todoService.addTask(taskToAdd)
         todoService.removeTask(taskToAdd)
-        self.assertNotIn(taskToAdd, todoService.getTasks())
+        matchedElementWithTaskToAdd = len(list(filter(lambda task: taskToAdd == task.name(), todoService.getTasks())))
+        self.assertEqual(0, matchedElementWithTaskToAdd)
