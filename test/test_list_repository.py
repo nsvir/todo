@@ -30,14 +30,14 @@ class TestGetListTodo(unittest.TestCase):
 
 class TestAddListTodo(unittest.TestCase):
 
-    def test_get_list_repository(self):
+    def test_add_list_repository(self):
         connection = mockito.mock()
         cursor = mockito.mock()
         mockito.when(connection).cursor().thenReturn(cursor)
 
         listRepository = ListRepository(connection)
-        rows = listRepository.add_list_into_repository('name', 0, '12:00')
-        mockito.verify(cursor).execute("INSERT into lists values ('name', 0, '12:00')")
+        rows = listRepository.add_list_into_repository('name', 0, '12:00', 0, 0, '')
+        mockito.verify(cursor).execute("INSERT into lists values ('name', 0, '12:00', 0, 0, '')")
 
 class TestUpdateSettingsListTodo(unittest.TestCase):
 
@@ -47,6 +47,6 @@ class TestUpdateSettingsListTodo(unittest.TestCase):
         mockito.when(connection).cursor().thenReturn(cursor)
 
         listRepository = ListRepository(connection)
-        rows = listRepository.update_settings('name', 0, '12:00')
-        mockito.verify(cursor).execute("UPDATE lists set desable = 0, hour = '12:00' where name='name'")
+        rows = listRepository.update_settings('name', 0, '12:00', 0, 0, '')
+        mockito.verify(cursor).execute("UPDATE lists set desable = 0, hour = '12:00', hebdo = 0, desable_hebdo = 0, hour_hebdo = '' where name='name'")
 

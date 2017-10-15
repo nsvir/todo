@@ -18,7 +18,7 @@ class ListTodoService:
 
     def add_list(self, taskList):
         self.list_todo.add_list(taskList)
-        self.repository.add_list_into_repository(taskList.name(), taskList.desapear(), taskList.hour())
+        self.repository.add_list_into_repository(taskList.name(), taskList.desapear(), taskList.hour(), taskList.hebdo(), taskList.desapearHebdo(), taskList.hourHebdo())
 
     def get_list_name(self):
         return self.repository.get_list_name_repository()
@@ -31,12 +31,12 @@ class ListTodoService:
 
     def save_settings(self, taskList):
         if self.list_todo.contains_list(taskList):
-            self.repository.update_settings(taskList.name(), taskList.desapear(), taskList.hour())
+            self.repository.update_settings(taskList.name(), taskList.desapear(), taskList.hour(), taskList.hebdo(), taskList.desapearHebdo(), taskList.hourHebdo())
 
     def initTodoList(self, listTodo, factory):
         results = self.repository.get_all_list()
         for res in results: 
-            lst = factory.createTaskListWithElements(res[0], res[1], res[2])
+            lst = factory.createTaskListWithElements(res[0], res[1], res[2], res[3], res[4], res[5])
             listTodo.add_list(lst)
 
     def get_lst(self, name):

@@ -39,6 +39,14 @@ Configure a list with only hour input
     When user submit setting form
     Then changes are enregistred
 
+Configure a list with only hour hebdo input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user write on timeDeseaperHebdo "12:00"
+    When user submit setting form
+    Then changes are enregistred
+
 Configure a list with check and hour input
     Given browser is opened to tasks page 
     And list "liste" already created
@@ -48,12 +56,40 @@ Configure a list with check and hour input
     When user submit setting form
     Then changes are enregistred
 
+Configure a list with checkhebdo and hourhebdo input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user click on disapearHebdo checkbox
+    And user write on timeDeseaperHebdo "12:00"
+    When user submit setting form
+    Then changes are enregistred
+
+Configure a list with checkhebdo and hourhebdo input and hebdo input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user click on hebdo checkbox
+    And user click on disapearHebdo checkbox
+    And user write on timeDeseaperHebdo "12:00"
+    When user submit setting form
+    Then changes are enregistred
+
 Configure a list with check and bad hour input
     Given browser is opened to tasks page 
     And list "liste654" already created
     And user click on settings button of list "liste654"
     And user click on disapear checkbox
     And user write on timeDeseaper "32:00"
+    When user submit setting form
+    Then changes are not enregistred
+
+Configure a list with check and bad hour hebdo input
+    Given browser is opened to tasks page 
+    And list "liste654" already created
+    And user click on settings button of list "liste654"
+    And user click on disapearHebdo checkbox
+    And user write on timeDeseaperHebdo "32:00"
     When user submit setting form
     Then changes are not enregistred
 
@@ -94,8 +130,17 @@ Changes Are Enregistred
 User Write On TimeDeseaper "${time}"
     Input TimeDeseaper    ${time}
 
+User Write On TimeDeseaperHebdo "${time}"
+    Input TimeDeseaperHebdo    ${time}
+
 User Click On Disapear Checkbox
     Click Checkbox Disapear
+
+User Click On DisapearHebdo Checkbox
+    Click Checkbox DisapearHebdo
+
+User Click On Hebdo Checkbox
+    Click Checkbox Hebdo
 
 Changes Are Not Enregistred
     Wait Until Page Contains      Error       5s
