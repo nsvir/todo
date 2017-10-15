@@ -30,5 +30,17 @@ class ListTodo:
                 return True
         return False
 
+    def contains_list_by_name(self, listname):
+        for listt in self.__lst:
+            if listt.name() == listname:
+                return True
+        return False
+
     def add_list(self, taskList):
         self.__lst.append(taskList)
+
+    def get_list(self, namelist):
+        for listt in self.__lst:
+            if listt.name() == namelist:
+                return listt
+        return None

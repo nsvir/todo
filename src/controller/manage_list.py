@@ -18,16 +18,37 @@ class ManageList:
         redirect("/")
 
     def listSettings(self, listname):
-        lists = self.listService.get_list_name()
-        output = template('src/web/template/settingsList.tpl', lists=lists, list=listname, status='')
-        return output
+        if self.listService.list_exists_by_name(listname):
+            return self.getSettingsPage("", listname, "../css/index.css")
+        redirect("/")
 
     def submitListSettings(self, name):
-        status = 'Error'
-        hour = request.forms.get('timeDisapear')
-        desapear = request.forms.get('desapearTask')
-        if (not desapear or self.checkParam.valid_hour(hour)) :
-            self.listService.save_settings(self.taskListFactory.createTaskListWithElements(name, desapear, hour))
-            status = 'Enregistré'
-        lists = self.listService.get_list_name()
-        return template('src/web/template/settingsList.tpl', lists=lists, list=name, status=status)
+        if self.listService.list_exists_by_name(name):
+            status = 'Error'
+            hour = request.forms.get('timeDisapear')
+            desapear = request.forms.get('desapearTask')
+            lst = self.listService.get_lst(name)
+            if (not desapear or self.checkParam.valid_hour(hour)) :
+                desa_pear = 1
+                ho_ur = ''
+                if desapear == None or desapear == 0:
+                    desa_pear = 0
+                if hour != None:
+                    ho_ur = hour
+                lst.set_parameters(desa_pear, ho_ur)
+                self.listService.save_settings(lst)
+                status = 'Enregistré'
+            text_desapear = 'Les tâches de la liste disparaissent à ' + lst.hour()
+            if lst.desapear() == 0 :
+                text_desapear = 'Les tâches de la liste ne disparaissent pas à ' + lst.hour()
+            return template('src/web/template/settingsListResult.tpl', list=name, desapear=text_desapear, status = status, css="../../css/index.css")
+        redirect("/")
+
+    def getSettingsPage(self, status, listname, css):
+        lst = self.listService.get_lst(listname)
+        desapear = ''
+        if lst.desapear() == 1:
+            desapear = 'checked'
+        hour = lst.hour()
+        output = template('src/web/template/settingsList.tpl', list=listname, desapear=desapear, hour=hour, css=css)
+        return output

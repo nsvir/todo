@@ -75,3 +75,89 @@ class TestContainsInList(unittest.TestCase):
         mockito.when(taskListfound).name().thenReturn('liste3')
         self.assertFalse(listTodo.contains_list(taskListfound))
 
+    def test_contains_in_todo_list_by_name_return_true(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertTrue(listTodo.contains_list_by_name('name'))
+
+    def test_contains_in_todo_list_by_name_return_false(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertTrue(listTodo.contains_list_by_name('liste'))
+
+    def test_contains_in_todo_list_by_name_in_empty(self):
+        listTodo = ListTodo()
+        taskList = mockito.mock()
+        self.assertFalse(listTodo.contains_list_by_name('taskList'))
+
+    def test_contains_in_todo_list_by_name_multiple_return_false(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertFalse(listTodo.contains_list_by_name('taskListfound'))
+
+class TestGetList(unittest.TestCase):
+
+    def test_get_lst_exists(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskListfound = mockito.mock()
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertEquals(taskList, listTodo.get_list('name'))
+
+    def test_get_list_return_ok(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskListfound = mockito.mock()
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertEquals(taskList2, listTodo.get_list('liste'))
+
+    def test_get_list_todo_in_empty(self):
+        listTodo = ListTodo()
+        taskList = mockito.mock()
+        self.assertIsNone(listTodo.get_list('taskList'))
+
+    def test_list_multiple_return_none(self):
+        listTodo = ListTodo()
+        lst=[]
+        taskListfound = mockito.mock()
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('liste')
+        self.assertIsNone(listTodo.get_list('liste3'))

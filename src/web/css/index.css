@@ -22,6 +22,11 @@
     padding: 0;
 }
 
+.buttonResultSettings{
+    float: right;
+    margin-top: 50px;
+}
+
 /* Remove margins and padding from the list */
 ul {
     margin: 0;
@@ -173,4 +178,8 @@ form#settingsForm {
     float:right;
     margin-right: 35%;
     margin-top:-1%;
+}
+
+.accueil{
+    float:right;
 }

@@ -12,6 +12,7 @@ ${BROWSER}        Firefox
 ${DELAY}          0
 ${TASKS URL}      http://${SERVER}/
 ${SETTINGS LISTE URL}      http://${SERVER}/listSettings/liste
+${SETTINGS LISTE654 URL}      http://${SERVER}/listSettings/liste
 
 *** Keywords ***
 Open Browser To Tasks Page
@@ -25,6 +26,10 @@ Open Browser to SettingsListe Page
 
 Go to SettingsListe Page
     Go To    ${SETTINGS LISTE URL}  
+    Set Selenium Speed    ${DELAY}
+
+Go to SettingsListe654 Page
+    Go To    ${SETTINGS LISTE654 URL}  
     Set Selenium Speed    ${DELAY}
 
 Input List
@@ -48,8 +53,14 @@ Click Button AddTask
 Click Button SetListListe
     Click Element    list_liste
 
+Click Button SetListListe654
+    Click Element    list_liste654
+
 Click Button SubmitSettingsListe
     Click Element    settings_submit
 
 Click Checkbox Disapear
+    Click Element   desapearTask
+
+Click Button Home
     Click Element   desapearTask

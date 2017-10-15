@@ -20,13 +20,21 @@ class TestAddListTodoService(unittest.TestCase):
 
 class TestGetListTodoService(unittest.TestCase):
 
-    def test_get_list(self):
+    def test_get_list_name(self):
         repository = mockito.mock()
         lst = mockito.mock()
         service = ListTodoService(repository, lst)
 
         service.get_list_name()
         mockito.verify(repository).get_list_name_repository()
+
+    def test_get_list_info(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+
+        service.get_lst('name')
+        mockito.verify(lst).get_list('name')
 
 
 class TestCheckListTodoService(unittest.TestCase):
@@ -40,6 +48,16 @@ class TestCheckListTodoService(unittest.TestCase):
 
         service.list_exists(lstTask)
         mockito.verify(lst).contains_list(lstTask)
+
+    def test_check_list_by_name(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+        lstTask = mockito.mock()
+        mockito.when(lst).contains_list_by_name(lstTask).thenReturn(True)
+
+        service.list_exists_by_name(lstTask)
+        mockito.verify(lst).contains_list_by_name(lstTask)
 
 class TestSaveSettingsTodoService(unittest.TestCase):
 

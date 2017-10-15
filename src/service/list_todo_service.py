@@ -23,6 +23,9 @@ class ListTodoService:
     def get_list_name(self):
         return self.repository.get_list_name_repository()
 
+    def list_exists_by_name(self, listname):
+        return self.list_todo.contains_list_by_name(listname)
+
     def list_exists(self, taskList):
         return self.list_todo.contains_list(taskList)
 
@@ -35,3 +38,6 @@ class ListTodoService:
         for res in results: 
             lst = factory.createTaskListWithElements(res[0], res[1], res[2])
             listTodo.add_list(lst)
+
+    def get_lst(self, name):
+        return self.list_todo.get_list(name)
