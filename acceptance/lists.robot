@@ -21,8 +21,34 @@ Configure a list
     Given browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
-    When user submit setting form without change
-    Then browser is opened to settings page of list "liste" without change
+    When user submit setting form
+    Then changes are enregistred
+
+Configure a list with only hour input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user write on timeDeseaper "12:00"
+    When user submit setting form
+    Then changes are enregistred
+
+Configure a list with check and hour input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user click on disapear checkbox
+    And user write on timeDeseaper "12:00"
+    When user submit setting form
+    Then changes are enregistred
+
+Configure a list with check and bad hour input
+    Given browser is opened to tasks page 
+    And list "liste" already created
+    And user click on settings button of list "liste"
+    And user click on disapear checkbox
+    And user write on timeDeseaper "32:00"
+    When user submit setting form
+    Then changes are not enregistred
 
 *** Keywords ***
 Browser is opened to tasks page
@@ -46,8 +72,17 @@ User Click On Settings Button Of List "liste"
 Browser is opened to settings page of list "liste"
     Go to SettingsListe Page
 
-User Submit Setting Form Without Change
+User Submit Setting Form
     Click Button SubmitSettingsListe
 
-Browser Is Opened To Settings Page Of List "liste" Without Change
+Changes Are Enregistred
     Wait Until Page Contains      Enregistré       5s
+
+User Write On TimeDeseaper "${time}"
+    Input TimeDeseaper    ${time}
+
+User Click On Disapear Checkbox
+    Click Checkbox Disapear
+
+Changes Are Not Enregistred
+    Wait Until Page Contains      Error       5s

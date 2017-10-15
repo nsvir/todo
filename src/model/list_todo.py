@@ -11,10 +11,10 @@ class ListTodo:
     []
 
     To add element in list
-    >>> lst.add_list("name")
+    lst.add_list(TaskList())
 
     To check if element is contained in list
-    >>> lst.contains_list("name")
+    lst.contains_list(TaskList())
     True
     """
 
@@ -24,8 +24,11 @@ class ListTodo:
     def list(self) :
         return self.__lst
 
-    def contains_list(self, listname):
-        return listname in self.__lst
+    def contains_list(self, tasklist):
+        for listt in self.__lst:
+            if listt.name() == tasklist.name():
+                return True
+        return False
 
-    def add_list(self, listname):
-        self.__lst.append(listname)
+    def add_list(self, taskList):
+        self.__lst.append(taskList)

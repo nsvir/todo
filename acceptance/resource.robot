@@ -36,6 +36,10 @@ Input Task
     [Arguments]    ${name}
     Input Text    inputTask        ${name}
 
+Input TimeDeseaper
+    [Arguments]    ${time}
+    Input Text    timeDisapear        ${time}
+
 Click Button AddList
     Click Element    addList
 
@@ -47,3 +51,6 @@ Click Button SetListListe
 
 Click Button SubmitSettingsListe
     Click Element    settings_submit
+
+Click Checkbox Disapear
+    Click Element   desapearTask

@@ -8,6 +8,7 @@
     float: left;
 }
 
+
 #todo {
     width: 80%;
     float: right;
@@ -154,4 +155,22 @@ input {
 
 .addBtn:hover {
     background-color: #bbb;
+}
+
+
+form#settingsForm {
+    margin-top:15px;
+}
+
+#settingsSubmit {
+    float:right;
+    width:15%;
+    margin-top:50px;
+}
+
+#timeDisapear{
+    width:100px;
+    float:right;
+    margin-right: 35%;
+    margin-top:-1%;
 }

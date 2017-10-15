@@ -22,7 +22,7 @@ def static_js(path):
 @loginApp.route('/')
 def hello():
     result = ['ok']
-    lists = listTodoService.get_list()
+    lists = listTodoService.get_list_name()
     listname = 'list1'
     output = template('src/web/template/make.tpl', rows=result, lists=lists, list=listname)
     return output
