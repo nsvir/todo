@@ -94,3 +94,62 @@ class TestRemoveListTodoService(unittest.TestCase):
         service.remove_list('name')
         mockito.verify(lst).remove_list('name')
         mockito.verify(repository).remove_list_into_repository("name")
+
+class TestRemoveDesableListTodoService(unittest.TestCase):
+
+    def test_remove_desable_list(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+        tasklist = mockito.mock()
+        mockito.when(lst).list().thenReturn([tasklist])
+        mockito.when(tasklist).name().thenReturn('name')
+        mockito.when(tasklist).hour().thenReturn('00:00')
+        mockito.when(tasklist).desapear().thenReturn(1)
+
+        service.remove_desable_lists()
+        mockito.verify(lst).remove_list('name')
+        mockito.verify(repository).remove_list_into_repository("name")
+
+    def test_not_remove_unable_list_not_desapear(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+        tasklist = mockito.mock()
+        mockito.when(lst).list().thenReturn([tasklist])
+        mockito.when(tasklist).name().thenReturn('name')
+        mockito.when(tasklist).hour().thenReturn('00:00')
+        mockito.when(tasklist).desapear().thenReturn(0)
+
+        service.remove_desable_lists()
+        mockito.verify(lst, mockito.never).remove_list('name')
+        mockito.verify(repository, mockito.never).remove_list_into_repository("name")
+
+    def test_not_remove_desable_list_desapear(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+        tasklist = mockito.mock()
+        mockito.when(lst).list().thenReturn([tasklist])
+        mockito.when(tasklist).name().thenReturn('name')
+        mockito.when(tasklist).hour().thenReturn('23:59')
+        mockito.when(tasklist).desapear().thenReturn(1)
+
+        service.remove_desable_lists()
+        mockito.verify(lst, mockito.never).remove_list('name')
+        mockito.verify(repository, mockito.never).remove_list_into_repository("name")
+
+class TestInitListTodoService(unittest.TestCase):
+
+    def test_add_list(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        lstTask = mockito.mock()
+        service = ListTodoService(repository, lst)
+        listtask = mockito.mock()
+        factory = mockito.mock()
+        mockito.when(repository).get_all_list().thenReturn([('name', 0, '12:00', 0, 0, '')])
+        mockito.when(factory).createTaskListWithElements(mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any()).thenReturn(lstTask)
+
+        service.initTodoList(lst, factory)
+        mockito.verify(lst).add_list(mockito.any())
