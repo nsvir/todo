@@ -40,3 +40,8 @@ class TestTodoController(unittest.TestCase):
         todoApp.checkTask(taskTest)
         todoService.checkTask.assert_called_once_with(taskTest)
         redirect.assert_called_once_with("/")
+
+    def test_home_returns_template(self):
+        template_mock = Mock(return_value="mocked stuff")
+        html_page = TodoApp(template = template_mock, listTodoService = Mock()).home()
+        template_mock.assert_called_once()
