@@ -24,11 +24,8 @@
 <div id="todo">
 <div id="myDIV" class="header">
   <h2>{{list}} - Tâches</h2>
-  <form action="/">
-    <input id="inputTask" type="text" placeholder="Enter a task" value="">
-    <input id="addTask" type="submit" value="Submit">
-  </form>
-
+  <input type="text" id="inputTask" name="inputTask" placeholder="Enter a Task">
+  <a onclick="this.href='addTask/'+document.getElementById('inputTask').value"><span class="addTask" id="addTask" name="addTask">+</span></a>
 </div>
 
 %for row in rows:
@@ -36,7 +33,7 @@
     <li>
         <a href="#"><input type="checkbox" /></a>
         {{row}}
-        <a href="#"><span class="close">×</span></a>
+        <a href="removeTask/{{row}}"><span id="remove{{row}}" class="close">x</span></a>
         <a href="#"><span class="edit">✎</span></a>
     </li>
   </ul>

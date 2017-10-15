@@ -6,6 +6,7 @@ Resource          resource.robot
 
 *** Variables ***
 ${TASK}           Make the dishes
+${REMOVETASK}           Make the dishes to remove
 
 *** Test Cases ***
 Add a task
@@ -15,18 +16,29 @@ Add a task
     Then Task List Should Contain "${TASK}"
     [Teardown]    Close Browser
 
+Remove a task
+    Given browser is opened to tasks page
+    And task list contain "${REMOVETASK}"
+    When I click on delete of "${REMOVETASK}"
+    Then Page Should Not Contain   ${REMOVETASK}
+    [Teardown]    Close Browser
+
 *** Keywords ***
+I click on delete of "${name}"
+  Click Element    remove${name}
+
+task list contain "${name}"
+  User write a new "${name}"
+  Click the button to add a task
+
 Browser is opened to tasks page
-    Open Browser To Tasks Page
+  Open Browser To Tasks Page
 
 User write a new "${name}"
-    Input Task    ${name}
+  Input Task    ${name}
 
 Click the button to add a task
-    Click Button AddTask
+  Click Button AddTask
 
 Task List Should Contain "${name}"
-    Page Should Contain    ${name}
-
-
-
+  Page Should Contain    ${name}
