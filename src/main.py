@@ -1,12 +1,12 @@
 from bottle import Bottle
-from login import loginApp
-from init import listApp
+from init import listApp, todoApp, css
 
 rootApp = Bottle()
 
 if __name__ == '__main__':
-    rootApp.merge(loginApp)
+    rootApp.merge(todoApp)
     rootApp.merge(listApp)
+    rootApp.merge(css)
     rootApp.run(debug=True)
 
 run(host='localhost', port=8080)
