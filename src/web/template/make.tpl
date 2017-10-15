@@ -33,7 +33,7 @@
     <li>
         <a href="#"><input type="checkbox" /></a>
         {{row}}
-        <a href="#"><span class="close">×</span></a>
+        <a href="removeTask/{{row}}"><span id="remove{{row}}" class="close">x</span></a>
         <a href="#"><span class="edit">✎</span></a>
     </li>
   </ul>
