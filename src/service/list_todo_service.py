@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 from model.list_todo import *
+import time
 
 
 class ListTodoService:
@@ -45,3 +46,15 @@ class ListTodoService:
 
     def get_lst(self, name):
         return self.list_todo.get_list(name)
+
+    def remove_desable_lists(self):
+        lst = self.list_todo.list()
+        for listTask in lst:
+            if listTask.hour() != '' and listTask.desapear() == 1:
+                minutes = listTask.hour()[3:]
+                heur = listTask.hour()[:2]
+                now_min = time.strftime("%M")
+                now_hour = time.strftime("%H")
+                if (now_hour > heur or (now_hour == heur and now_min > minutes)) :
+                    self.remove_list(listTask.name())
+

@@ -7,6 +7,7 @@ from service.todo_service import TodoService
 Controller to redirect todo requests
 """
 class TodoApp():
+
     def __init__(self, listTodoServer, \
                 todoService = TodoService(), template = template, \
                 request = request, redirect = redirect):
@@ -17,6 +18,7 @@ class TodoApp():
         self.redirect = redirect
 
     def home(self):
+        self.listTodoService.remove_desable_lists()
         tasks = self.service.getTasks()
         lists = self.listTodoServer.get_list_name()
         output = self.template('src/web/template/make.tpl', tasks=tasks, lists=lists, list=None)

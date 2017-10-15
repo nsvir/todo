@@ -60,8 +60,14 @@ Click Button SetListListe
 Click Button SetListListe654
     Click Element    list_liste654
 
+Click Button SetListListeTestByTime
+    Click Element    list_deletelistebytimetest
+
 Click Button DeleteListListe
     Click Element    delete_list_deletelistetest
+
+Click Button DeleteListListeByTime
+    Click Element    delete_list_deletelistebytimetest
 
 Click Button SubmitSettingsListe
     Click Element    settings_submit

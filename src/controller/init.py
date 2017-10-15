@@ -14,3 +14,4 @@ class Init:
 
     def initTodoList(self, listTodo):
         self.listService.initTodoList(listTodo, self.taskListFactory)
+        self.listService.remove_desable_lists()
