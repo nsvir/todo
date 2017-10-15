@@ -46,4 +46,5 @@ listApp.route("/deleteList/:name")(myapp.deleteList)
 
 todoApp.route("/")(myTodoApp.home)
 todoApp.route("/addTask/:task")(myTodoApp.addTask)
+todoApp.route("/removeTask/:task")(myTodoApp.removeTask)
 css.route('/css/:path')(static_css)

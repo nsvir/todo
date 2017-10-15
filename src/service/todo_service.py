@@ -10,7 +10,9 @@ class TodoService():
 
     def addTask(self, task):
         self.tasks.append(task)
-        print(task)
+
+    def removeTask(self, task):
+        self.tasks.remove(task)
 
     def getTasks(self):
         return self.tasks;
