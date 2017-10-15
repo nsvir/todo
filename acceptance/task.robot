@@ -19,8 +19,8 @@ Add a task
 Check a task
   Given browser is opened to tasks page
   And task list contain "${CHECKTASK}"
-  Then the "${CHECKTASK}" should be done
   When I click the checkbox of task "${CHECKTASK}"
+  Then the "${CHECKTASK}" should be done
   [Teardown]    Close Browser
 
 Remove a task
@@ -35,8 +35,8 @@ the "${CHECKTASK}" should be done
   Checkbox Should Be Selected   done${CHECKTASK}
 
 I click the checkbox of task "${CHECKTASK}"
-  Wait Until Element Is Visible done${CHECKTASK}
-  Select Checkbox done${CHECKTASK}
+  Wait Until Element Is Visible    done${CHECKTASK}
+  Select Checkbox    done${CHECKTASK}
 
 I click on delete of "${name}"
   Click Element    remove${name}
