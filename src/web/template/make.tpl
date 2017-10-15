@@ -15,7 +15,7 @@
       <ul id="myList">
         <a href="#"><li>
             {{row}}
-            <a href="#"><span class="close">×</span></a>
+            <a onclick="this.href='deleteList/{{row}}'"><span class="close" name="delete_list_{{row}}">×</span></a>
             <a onclick="this.href='listSettings/{{row}}'"><span class="edit" name="list_{{row}}">✎</span></a>
         </li></a>
       </ul>

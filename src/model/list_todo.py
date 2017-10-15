@@ -44,3 +44,10 @@ class ListTodo:
             if listt.name() == namelist:
                 return listt
         return None
+
+    def remove_list(self, namelist):
+        newlst = []
+        for lst in self.__lst:
+            if lst.name() != namelist:
+                newlst.append(lst)
+        self.__lst = newlst

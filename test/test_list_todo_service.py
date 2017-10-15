@@ -83,3 +83,14 @@ class TestSaveSettingsTodoService(unittest.TestCase):
 
         service.save_settings(lstTask)
         mockito.verify(repository).update_settings(mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any())
+
+class TestRemoveListTodoService(unittest.TestCase):
+
+    def test_remove_list(self):
+        repository = mockito.mock()
+        lst = mockito.mock()
+        service = ListTodoService(repository, lst)
+
+        service.remove_list('name')
+        mockito.verify(lst).remove_list('name')
+        mockito.verify(repository).remove_list_into_repository("name")

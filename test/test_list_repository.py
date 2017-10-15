@@ -39,6 +39,17 @@ class TestAddListTodo(unittest.TestCase):
         rows = listRepository.add_list_into_repository('name', 0, '12:00', 0, 0, '')
         mockito.verify(cursor).execute("INSERT into lists values ('name', 0, '12:00', 0, 0, '')")
 
+class TestRemoveListTodo(unittest.TestCase):
+
+    def test_remove_list_repository(self):
+        connection = mockito.mock()
+        cursor = mockito.mock()
+        mockito.when(connection).cursor().thenReturn(cursor)
+
+        listRepository = ListRepository(connection)
+        rows = listRepository.remove_list_into_repository('name')
+        mockito.verify(cursor).execute("DELETE from lists where name='name'")
+
 class TestUpdateSettingsListTodo(unittest.TestCase):
 
     def test_update_list_settings_repository(self):

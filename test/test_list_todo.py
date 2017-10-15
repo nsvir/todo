@@ -161,3 +161,25 @@ class TestGetList(unittest.TestCase):
         mockito.when(taskList).name().thenReturn('name')
         mockito.when(taskList2).name().thenReturn('liste')
         self.assertIsNone(listTodo.get_list('liste3'))
+
+class TestRemoveInList(unittest.TestCase):
+
+    def test_remove_in_todo_list_empty(self):
+        listTodo = ListTodo()
+        taskList = mockito.mock()
+        listTodo.remove_list('name')
+        self.assertEquals([], listTodo.list())
+
+    def test_remove_names_in_todo_list(self):
+        listTodo = ListTodo()
+        taskList = mockito.mock()
+        taskList2 = mockito.mock()
+        taskList3 = mockito.mock()
+        listTodo.add_list(taskList)
+        listTodo.add_list(taskList2)
+        listTodo.add_list(taskList3)
+        mockito.when(taskList).name().thenReturn('name')
+        mockito.when(taskList2).name().thenReturn('name2')
+        mockito.when(taskList3).name().thenReturn('name3')
+        listTodo.remove_list('name2')
+        self.assertEquals([taskList, taskList3], listTodo.list())

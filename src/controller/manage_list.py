@@ -17,6 +17,11 @@ class ManageList:
             self.listService.add_list(self.taskListFactory.createTaskList(listname))
         redirect("/")
 
+    def deleteList(self, name):
+        if (self.checkParam.valid_name_list(name)) :
+            self.listService.remove_list(name)
+        redirect("/")
+
     def listSettings(self, listname):
         if self.listService.list_exists_by_name(listname):
             return self.getSettingsPage("", listname, "../css/index.css")
