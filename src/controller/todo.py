@@ -19,7 +19,7 @@ class TodoApp():
     def home(self):
         tasks = self.service.getTasks()
         lists = self.listTodoServer.get_list_name()
-        output = self.template('src/web/template/make.tpl', rows=tasks, lists=lists, list=None)
+        output = self.template('src/web/template/make.tpl', tasks=tasks, lists=lists, list=None)
         return output
 
     def addTask(self, task):

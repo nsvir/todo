@@ -28,12 +28,16 @@
   <a onclick="this.href='addTask/'+document.getElementById('inputTask').value"><span class="addTask" id="addTask" name="addTask">+</span></a>
 </div>
 
-%for row in rows:
+%for task in tasks:
   <ul id="myUL">
     <li>
-        <a href="#"><input type="checkbox" /></a>
-        {{row}}
-        <a href="removeTask/{{row}}"><span id="remove{{row}}" class="close">x</span></a>
+        <a href="taskDone/{{task.name()}}"><input id="done{{task.name()}}" type="checkbox"
+          %if task.done():
+            checked="checked" disabled="disabled"
+          %end
+          /></a>
+        {{task.name()}}
+        <a href="removeTask/{{task.name()}}"><span id="remove{{task.name()}}" class="close">x</span></a>
         <a href="#"><span class="edit">✎</span></a>
     </li>
   </ul>

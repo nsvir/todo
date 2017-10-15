@@ -7,7 +7,7 @@ Resource          resource.robot
 *** Variables ***
 ${TASK}           Make the dishes
 ${REMOVETASK}           Make the dishes to remove
-
+${CHECKTASK}      Not do the dishes
 *** Test Cases ***
 Add a task
     Given browser is opened to tasks page
@@ -15,6 +15,13 @@ Add a task
     And click the button to add a task
     Then Task List Should Contain "${TASK}"
     [Teardown]    Close Browser
+
+Check a task
+  Given browser is opened to tasks page
+  And task list contain "${CHECKTASK}"
+  Then the "${CHECKTASK}" should be done
+  When I click the checkbox of task "${CHECKTASK}"
+  [Teardown]    Close Browser
 
 Remove a task
     Given browser is opened to tasks page
@@ -24,6 +31,13 @@ Remove a task
     [Teardown]    Close Browser
 
 *** Keywords ***
+the "${CHECKTASK}" should be done
+  Checkbox Should Be Selected   done${CHECKTASK}
+
+I click the checkbox of task "${CHECKTASK}"
+  Wait Until Element Is Visible done${CHECKTASK}
+  Select Checkbox done${CHECKTASK}
+
 I click on delete of "${name}"
   Click Element    remove${name}
 

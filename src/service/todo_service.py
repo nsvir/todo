@@ -1,4 +1,4 @@
-
+from model.Task import Task
 """
 
 """
@@ -9,10 +9,10 @@ class TodoService():
         self.tasks = []
 
     def addTask(self, task):
-        self.tasks.append(task)
+        self.tasks.append(Task(task))
 
     def removeTask(self, task):
-        self.tasks.remove(task)
+        self.tasks = list(filter(lambda taskInList: task != taskInList.name(), self.tasks))
 
     def getTasks(self):
         return self.tasks;
