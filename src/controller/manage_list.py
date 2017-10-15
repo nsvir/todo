@@ -7,25 +7,26 @@ debug(True)
 Controller to manage list todo
 """
 class ManageList:
-    def __init__(self, listService, checkParam, taskListFactory):
+    def __init__(self, listService, checkParam, taskListFactory, redirect = redirect):
         self.listService = listService
         self.checkParam = checkParam
         self.taskListFactory = taskListFactory
+        self.redirect = redirect
 
     def addList(self, listname):
         if (self.checkParam.valid_name_list(listname)) :
             self.listService.add_list(self.taskListFactory.createTaskList(listname))
-        redirect("/")
+        self.redirect("/")
 
     def deleteList(self, name):
         if (self.checkParam.valid_name_list(name)) :
             self.listService.remove_list(name)
-        redirect("/")
+        self.redirect("/")
 
     def listSettings(self, listname):
         if self.listService.list_exists_by_name(listname):
             return self.getSettingsPage("", listname, "../css/index.css")
-        redirect("/")
+        self.redirect("/")
 
     def submitListSettings(self, name):
         if self.listService.list_exists_by_name(name):
@@ -59,7 +60,7 @@ class ManageList:
                 if lst.desapearHebdo() == 0:
                     text_hebdo += ' et disparaissent à ' + lst.hourHebdo()
             return template('src/web/template/settingsListResult.tpl', list=name, desapear=text_desapear, hebdo= text_hebdo, status = status, css="../../css/index.css")
-        redirect("/")
+        self.redirect("/")
 
     def transformCheckboxToInt(self, checkbox):
         res = 1
