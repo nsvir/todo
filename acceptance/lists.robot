@@ -116,6 +116,17 @@ Remove a list
     Then List Should Not Contain "deletelistetest"
     [Teardown]    Close Browser
 
+Remove a list by time
+    Given browser is opened to tasks page 
+    And list "deletelistebytimetest" already created
+    And user click on settings button of list "deletelistebytimetest"
+    And user click on disapear checkbox
+    And user write on timeDeseaper "00:01"
+    And user submit setting form
+    When browser is opened to tasks page
+    Then List Should Not Contain "deletelistebytimetest"
+    [Teardown]    Close Browser
+
 *** Keywords ***
 Browser is opened to tasks page
     Open Browser To Tasks Page
@@ -141,8 +152,14 @@ User Click On Settings Button Of List "liste"
 User Click On Settings Button Of List "liste654"
     Click Button SetListListe654
 
+User Click On Settings Button Of List "deletelistebytimetest"
+    Click Button SetListListeTestByTime
+
 User Click On Delete Button Of List "deletelistetest"
     Click Button DeleteListListe
+
+User Click On Delete Button Of List "deletelistebytimetest"
+    Click Button DeleteListListeByTime
 
 Browser is opened to settings page of list "liste"
     Go to SettingsListe Page

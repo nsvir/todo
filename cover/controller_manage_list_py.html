@@ -180,9 +180,9 @@
 <p id="t17" class="stm run hide_run">            <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">add_list</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">taskListFactory</span><span class="op">.</span><span class="nam">createTaskList</span><span class="op">(</span><span class="nam">listname</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t18" class="stm mis">        <span class="nam">redirect</span><span class="op">(</span><span class="str">"/"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t19" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t20" class="stm run hide_run">    <span class="key">def</span> <span class="nam">deleteList</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listname</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t21" class="stm mis">        <span class="key">if</span> <span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">checkParam</span><span class="op">.</span><span class="nam">valid_name_list</span><span class="op">(</span><span class="nam">listname</span><span class="op">)</span><span class="op">)</span> <span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t22" class="stm mis">            <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">remove_list</span><span class="op">(</span><span class="nam">listname</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t20" class="stm run hide_run">    <span class="key">def</span> <span class="nam">deleteList</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">name</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t21" class="stm mis">        <span class="key">if</span> <span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">checkParam</span><span class="op">.</span><span class="nam">valid_name_list</span><span class="op">(</span><span class="nam">name</span><span class="op">)</span><span class="op">)</span> <span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t22" class="stm mis">            <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">remove_list</span><span class="op">(</span><span class="nam">name</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t23" class="stm mis">        <span class="nam">redirect</span><span class="op">(</span><span class="str">"/"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t24" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t25" class="stm run hide_run">    <span class="key">def</span> <span class="nam">listSettings</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listname</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
@@ -260,7 +260,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.3.4</a>,
-            created at 2017-10-15 16:05
+            created at 2017-10-15 16:34
         </p>
     </div>
 </div>

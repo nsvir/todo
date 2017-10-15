@@ -32,7 +32,7 @@ listTodoService = ListTodoService(listRepository, listTodo)
 init = Init(listTodoService, listRepository, taskListFactory)
 init.initTodoList(listTodo)
 todoApp = Bottle()
-myTodoApp = TodoApp(listTodoServer = listTodoService)
+myTodoApp = TodoApp(listTodoService)
 
 
 listApp = Bottle()

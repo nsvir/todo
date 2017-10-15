@@ -6,12 +6,13 @@ import os, sys
 Controller to redirect todo requests
 """
 class TodoApp():
-    def __init__(self, listTodoServer, todoService = None, template = template):
+    def __init__(self, listTodoService, todoService = None, template = template):
         self.service = todoService
         self.template = template
-        self.listTodoServer = listTodoServer
+        self.listTodoService = listTodoService
 
     def home(self):
-        lists = self.listTodoServer.get_list_name()
+        self.listTodoService.remove_desable_lists()
+        lists = self.listTodoService.get_list_name()
         output = self.template('src/web/template/make.tpl', rows=[], lists=lists, list=None)
         return output
