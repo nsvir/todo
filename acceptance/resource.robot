@@ -44,6 +44,10 @@ Input TimeDeseaper
     [Arguments]    ${time}
     Input Text    timeDisapear        ${time}
 
+Input TimeDeseaperHebdo
+    [Arguments]    ${time}
+    Input Text    timeDisapearHebdo        ${time}
+
 Click Button AddList
     Click Element    addList
 
@@ -61,6 +65,12 @@ Click Button SubmitSettingsListe
 
 Click Checkbox Disapear
     Click Element   desapearTask
+
+Click Checkbox DisapearHebdo
+    Click Element   desapearTaskHebdo
+
+Click Checkbox Hebdo
+    Click Element   hebdo
 
 Click Button Home
     Click Element   desapearTask

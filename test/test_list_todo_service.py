@@ -12,10 +12,13 @@ class TestAddListTodoService(unittest.TestCase):
         mockito.when(listtask).name().thenReturn('name')
         mockito.when(listtask).desapear().thenReturn(True)
         mockito.when(listtask).hour().thenReturn('12:00')
+        mockito.when(listtask).hebdo().thenReturn(False)
+        mockito.when(listtask).desapearHebdo().thenReturn(False)
+        mockito.when(listtask).hourHebdo().thenReturn('12:00')
 
         service.add_list(listtask)
         mockito.verify(lst).add_list(listtask)
-        mockito.verify(repository).add_list_into_repository("name", True, '12:00')
+        mockito.verify(repository).add_list_into_repository("name", True, '12:00' ,False, False, '12:00')
 
 
 class TestGetListTodoService(unittest.TestCase):
@@ -69,7 +72,7 @@ class TestSaveSettingsTodoService(unittest.TestCase):
         mockito.when(lst).contains_list(lstTask).thenReturn(False)
 
         service.save_settings(lstTask)
-        mockito.verify(repository, mockito.never).update_settings(mockito.any(), mockito.any(), mockito.any())
+        mockito.verify(repository, mockito.never).update_settings(mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any())
 
     def test_save_settings_list_when_name_not_exists(self):
         repository = mockito.mock()
@@ -79,4 +82,4 @@ class TestSaveSettingsTodoService(unittest.TestCase):
         mockito.when(lst).contains_list(lstTask).thenReturn(True)
 
         service.save_settings(lstTask)
-        mockito.verify(repository).update_settings(mockito.any(), mockito.any(), mockito.any())
+        mockito.verify(repository).update_settings(mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any(), mockito.any())

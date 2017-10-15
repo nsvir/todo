@@ -173,13 +173,17 @@ form#settingsForm {
     margin-top:50px;
 }
 
-#timeDisapear{
+#timeDisapear, #timeDisapearHebdo{
     width:100px;
-    float:right;
     margin-right: 35%;
     margin-top:-1%;
+    float:inherit;
 }
 
 .accueil{
     float:right;
+}
+
+#hebdomadaires, #desapearTask{
+    float: inherit;
 }

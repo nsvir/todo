@@ -13,6 +13,8 @@
   </div>
   <div>
   {{status}}
+  </br></br>
+  {{hebdo}}
 </br>    {{desapear}}
     
     <a  class="buttonResultSettings" href="../{{list}}"><button type="button" >Parametres</button></a>
