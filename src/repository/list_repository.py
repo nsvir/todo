@@ -30,3 +30,8 @@ class ListRepository:
         cur = self.connection.cursor()
         cur.execute("SELECT * from lists")
         return cur.fetchall()
+
+    def remove_list_into_repository(self, listname):
+        cur = self.connection.cursor()
+        cur.execute("DELETE from lists where name='" + listname + "'")
+        self.connection.commit()

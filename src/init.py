@@ -33,3 +33,4 @@ myapp = ManageList(listService=listTodoService, checkParam=checkParameter, taskL
 listApp.route("/addList/:listname")(myapp.addList)
 listApp.route("/listSettings/:listname")(myapp.listSettings)
 listApp.route("/listSettings/settingsForm/:name", 'POST')(myapp.submitListSettings)
+listApp.route("/deleteList/:name")(myapp.deleteList)

@@ -20,6 +20,10 @@ class ListTodoService:
         self.list_todo.add_list(taskList)
         self.repository.add_list_into_repository(taskList.name(), taskList.desapear(), taskList.hour(), taskList.hebdo(), taskList.desapearHebdo(), taskList.hourHebdo())
 
+    def remove_list(self, listname):
+        self.list_todo.remove_list(listname)
+        self.repository.remove_list_into_repository(listname)
+
     def get_list_name(self):
         return self.repository.get_list_name_repository()
 

@@ -60,6 +60,9 @@ Click Button SetListListe
 Click Button SetListListe654
     Click Element    list_liste654
 
+Click Button DeleteListListe
+    Click Element    delete_list_deletelistetest
+
 Click Button SubmitSettingsListe
     Click Element    settings_submit
 
