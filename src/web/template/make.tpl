@@ -25,7 +25,9 @@
 <div id="myDIV" class="header">
   <h2>{{list}} - Tâches</h2>
   <input type="text" id="inputTask" name="inputTask" placeholder="Enter a Task">
-  <a onclick="this.href='addTask/'+document.getElementById('inputTask').value"><span class="addTask" id="addTask" name="addTask">+</span></a>
+  <a onclick="this.href='addTask/'+document.getElementById('inputTask').value">
+    <input type="button" id="addTask" value="Add Task">
+  </a>
 </div>
 
 %for task in tasks:
