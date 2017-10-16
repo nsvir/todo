@@ -13,4 +13,4 @@ CREATE table tasks (
   isDone boolean,
   listname char(50),
   visible boolean
-)
+);
