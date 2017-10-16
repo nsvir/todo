@@ -10,6 +10,7 @@ hour_hebdo char(5)
 CREATE table tasks (
 
   name char(50),
-  isDone boolean
-
+  isDone boolean,
+  listname char(50),
+  visible boolean
 )

@@ -10,7 +10,7 @@ class TestAddListTodoController(unittest.TestCase):
         checkParam = mock()
         redirect = mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
         when(checkParam).valid_name_list('name').thenReturn(True)
         manageList.addList('name')
         
@@ -21,7 +21,7 @@ class TestAddListTodoController(unittest.TestCase):
         checkParam = mock()
         redirect = mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
         when(checkParam).valid_name_list('name').thenReturn(False)
         manageList.addList('name')
         
@@ -35,10 +35,28 @@ class TestDeleteListTodoController(unittest.TestCase):
         checkParam = mock()
         redirect = mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        todoService = mock()
+        manageList = ManageList(listTodoService, checkParam, taskListFactory,  todoService, redirect)
         when(checkParam).valid_name_list('name').thenReturn(True)
+        when(todoService).getTasksByListname('name').thenReturn([])
         manageList.deleteList('name')
         
+        verify(listTodoService).remove_list(any())
+
+    def test_delete_list_with_taskcontroller(self):
+        listTodoService = mock()
+        checkParam = mock()
+        redirect = mock()
+        taskListFactory = mock()
+        todoService = mock()
+        task = mock()
+        manageList = ManageList(listTodoService, checkParam, taskListFactory,  todoService, redirect)
+        when(checkParam).valid_name_list('name').thenReturn(True)
+        when(task).name().thenReturn('name')
+        when(todoService).getTasksByListname('name').thenReturn([task])
+        manageList.deleteList('name')
+        
+        verify(todoService).removeTask('name')
         verify(listTodoService).remove_list(any())
 
     def test_add_bad_list_controller(self):
@@ -46,7 +64,7 @@ class TestDeleteListTodoController(unittest.TestCase):
         checkParam = mock()
         redirect = mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
         when(checkParam).valid_name_list('name').thenReturn(False)
         manageList.deleteList('name')
         
@@ -59,7 +77,7 @@ class TestListSettingsTodoController(unittest.TestCase):
         checkParam = mock()
         redirect = mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
         when(listTodoService).list_exists_by_name('name').thenReturn(False)
         manageList.listSettings('name')
         
@@ -71,7 +89,7 @@ class TestListSettingsTodoController(unittest.TestCase):
         redirect = mock()
         lst= mock()
         taskListFactory = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
         when(listTodoService).list_exists_by_name('name').thenReturn(True)
         when(listTodoService).get_list_name().thenReturn(['name'])
         when(listTodoService).get_lst('name').thenReturn(lst)
@@ -88,7 +106,7 @@ class TestListSettingsTodoController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
         when(listTodoService).get_list_name().thenReturn(['name'])
         when(listTodoService).get_lst('name').thenReturn(lst)
         when(lst).desapear().thenReturn(0)
@@ -105,7 +123,7 @@ class TestListSettingsTodoController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
         when(listTodoService).get_list_name().thenReturn(['name'])
         when(listTodoService).get_lst('name').thenReturn(lst)
         when(lst).desapear().thenReturn(1)
@@ -122,7 +140,7 @@ class TestListSettingsTodoController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
         when(listTodoService).get_list_name().thenReturn(['name'])
         when(listTodoService).get_lst('name').thenReturn(lst)
         when(lst).desapear().thenReturn(1)
@@ -142,7 +160,7 @@ class TestSubmitListSettingsController(unittest.TestCase):
         taskListFactory = mock()
         lst = mock()
         redirect = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, redirect, mock())
 
         when(listTodoService).list_exists_by_name('name').thenReturn(False)
         manageList.submitListSettings('name')
@@ -155,7 +173,7 @@ class TestTransformHourToStringController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
 
         self.assertEquals("" , manageList.transformHourToString(None))
 
@@ -164,7 +182,7 @@ class TestTransformHourToStringController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
 
         self.assertEquals("23:33" , manageList.transformHourToString('23:33'))
 
@@ -175,7 +193,7 @@ class TestTransformCheckBoxToIntController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
 
         self.assertEquals(0 , manageList.transformCheckboxToInt(None))
 
@@ -184,7 +202,7 @@ class TestTransformCheckBoxToIntController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
 
         self.assertEquals(0 , manageList.transformCheckboxToInt(0))
 
@@ -193,6 +211,6 @@ class TestTransformCheckBoxToIntController(unittest.TestCase):
         checkParam = mock()
         taskListFactory = mock()
         lst = mock()
-        manageList = ManageList(listTodoService, checkParam, taskListFactory)
+        manageList = ManageList(listTodoService, checkParam, taskListFactory, mock())
 
         self.assertEquals(1 , manageList.transformCheckboxToInt(1))

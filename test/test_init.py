@@ -1,6 +1,6 @@
 from controller.init import *
 import unittest
-from mockito import when, mock, any
+from mockito import when, mock, any, verify
 from bottle import template
 
 class TestAddListTodoController(unittest.TestCase):
@@ -9,8 +9,10 @@ class TestAddListTodoController(unittest.TestCase):
         listTodoService = mock()
         listRepository = mock()
         taskListFactory = mock()
-        init = Init(listTodoService, listRepository, taskListFactory)
-        when(listTodoService).initTodoList(listTodoService).thenReturn(True)
-        when(listTodoService).remove_desable_lists().thenRaise(ValueError())
+        serviceTodo = mock()
+        init = Init(listTodoService, listRepository, taskListFactory, serviceTodo)
         
-        self.assertRaises(ValueError, init.initTodoList, any())
+        init.initTodoList(any())
+        verify(listTodoService).initTodoList(any(), any())
+        verify(listTodoService).remove_desable_lists()
+        verify(serviceTodo).remove_desable_tasks(any())

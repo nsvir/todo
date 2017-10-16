@@ -47,8 +47,12 @@ class ListTodoService:
     def get_lst(self, name):
         return self.list_todo.get_list(name)
 
+    def get_all_lst(self):
+        return self.list_todo.list()
+
     def remove_desable_lists(self):
         lst = self.list_todo.list()
+        res = []
         for listTask in lst:
             if listTask.hour() != '' and listTask.desapear() == 1:
                 minutes = listTask.hour()[3:]
@@ -57,4 +61,6 @@ class ListTodoService:
                 now_hour = time.strftime("%H")
                 if (now_hour > heur or (now_hour == heur and now_min > minutes)) :
                     self.remove_list(listTask.name())
+                    res.append(listTask.name())
+        return res
 

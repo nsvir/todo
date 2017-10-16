@@ -7,11 +7,12 @@ debug(True)
 Controller to manage list todo
 """
 class ManageList:
-    def __init__(self, listService, checkParam, taskListFactory, redirect = redirect):
+    def __init__(self, listService, checkParam, taskListFactory, todoService, redirect = redirect):
         self.listService = listService
         self.checkParam = checkParam
         self.taskListFactory = taskListFactory
         self.redirect = redirect
+        self.todoService = todoService
 
     def addList(self, listname):
         if (self.checkParam.valid_name_list(listname)) :
@@ -21,6 +22,9 @@ class ManageList:
     def deleteList(self, name):
         if (self.checkParam.valid_name_list(name)) :
             self.listService.remove_list(name)
+            lst = self.todoService.getTasksByListname(name)
+            for t in lst:
+                self.todoService.removeTask(t.name())
         self.redirect("/")
 
     def listSettings(self, listname):

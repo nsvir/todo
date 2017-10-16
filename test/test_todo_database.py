@@ -10,30 +10,60 @@ class TestTodoDatabase(unittest.TestCase):
 
     def test_add_task_database(self):
         connection = Mock()
-        objectTaskToAdd = Task("me")
+        objectTaskToAdd = mockito.mock()
+        
+        mockito.when(objectTaskToAdd).name().thenReturn("me")
+        mockito.when(objectTaskToAdd).done().thenReturn(False)
+        mockito.when(objectTaskToAdd).listname().thenReturn("lst")
+        mockito.when(objectTaskToAdd).is_visible().thenReturn(True)
+
         TodoDatabase(connection).add(objectTaskToAdd)
-        connection.execute.assert_called_once_with("INSERT into tasks values (?, ?)", ("me", False))
+        connection.execute.assert_called_once_with("INSERT into tasks values (?, ?, ?, ?)", ("me", False, "lst", True))
         connection.commit.assert_called_once()
 
     def test_update_task_database(self):
         connection = Mock()
-        objectTaskToUpdate = Task("me")
+        objectTaskToUpdate = Task("me", "lst")
         TodoDatabase(connection).update(objectTaskToUpdate)
         connection.execute.assert_called_once_with("UPDATE tasks SET name = ?, isDone = ? WHERE name = ?", \
                                                     ("me", False, "me"))
         connection.commit.assert_called_once()
 
+    def test_update_name_task_database(self):
+        connection = Mock()
+        objectTaskToUpdate = mockito.mock()
+        mockito.when(objectTaskToUpdate).name().thenReturn("me")
+        TodoDatabase(connection).update_with_old_name("avant", objectTaskToUpdate)
+        connection.execute.assert_called_once_with("UPDATE tasks SET name = ? WHERE name = ?", \
+                                                    ("me", "avant"))
+        connection.commit.assert_called_once()
+
     def test_retrieve_task_database(self):
         connection = Mock()
-        task = Task("me", True)
-        mockito.when(connection).execute('SELECT name, isDone FROM tasks').thenReturn([[task.name(), task.done()]])
+        mockito.when(connection).execute('SELECT name, isDone, listname, visible FROM tasks').thenReturn([["me", True, "list", True]])
         listResult = TodoDatabase(connection).retrieve()
-        self.assertEquals(task.name(), listResult[0].name())
-        self.assertEquals(task.done(), listResult[0].done())
+        task = listResult[0]
+        self.assertEquals(task.name(), "me")
+        self.assertTrue(task.done())
+        self.assertEquals(task.listname(), "list")
+        self.assertTrue(task.is_visible())
 
     def test_delete_task_databse(self):
         connection = Mock()
-        objectTaskToRemove = Task("me")
+        objectTaskToRemove = Task("me", "lst")
         TodoDatabase(connection).delete(objectTaskToRemove)
-        connection.execute.assert_called_once_with("DELETE FROM tasks WHERE name = ?", "me")
+        connection.execute.assert_called_once_with("DELETE FROM tasks WHERE name = 'me'")
         connection.commit.assert_called_once()
+
+    def test_desable_task_databse(self):
+        connection = Mock()
+        TodoDatabase(connection).desable_tasks_by_listname('name')
+        connection.execute.assert_called_once_with("UPDATE tasks SET visible = 'FALSE' WHERE listname = 'name'")
+        connection.commit.assert_called_once()
+
+    def test_enable_task_databse(self):
+        connection = Mock()
+        TodoDatabase(connection).enable_tasks_by_listname('name')
+        connection.execute.assert_called_once_with("UPDATE tasks SET visible = 'TRUE' WHERE listname = 'name'")
+        connection.commit.assert_called_once()
+

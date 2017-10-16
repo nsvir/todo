@@ -12,8 +12,17 @@
 Introduction
 ============
 
+TodoList with multiple functionalities
+Add a list and add multiple tasks
+We can check task to stop it and we can remove it
+We can change name of task 
+For each list, we can configure time and at the end, the task is removed or is invisible
+
+
 Execution
 =========
+
+Before, database should be created with file in src/db/create.sql
 
 Install dependencies
 --------------------
@@ -45,7 +54,7 @@ Launching unit test and coverage
 
 .. code:: bash
 
-  nosetests --with-coverage --cover-erase --cover-branches --with-doctest test
+  nosetests --with-coverage --cover-erase --cover-branches --with-doctest --cover-html test
 
 .. code:: bash
 
@@ -56,7 +65,7 @@ Acceptance Test
 
 .. code:: bash
 
-   python -m robot README.rst
+   python -m robot acceptance/
 
 .. code:: robotframework
 
@@ -71,16 +80,6 @@ Acceptance Test
    She click submit
    She see the task in the list
 
-   *** Test Case ***
-   User can add a List
-    When he writes a list
-    And he clicks submit
-    Then he see the list in the list
-
-   *** Keywords ***
-   He write a list
-   He click submit
-   He see the list in the list
 
 Architecture
 ============

@@ -48,6 +48,10 @@ Input TimeDeseaperHebdo
     [Arguments]    ${time}
     Input Text    timeDisapearHebdo        ${time}
 
+Input NameTask
+    [Arguments]    ${name}
+    Input Text    newTaskName        ${name}
+
 Click Button AddList
     Click Element    addList
 

@@ -33,9 +33,15 @@ ul {
     padding: 0;
 }
 
+#selectList {
+    width: 15%;
+    padding: 10px;
+    font-size: 16px;
+}
+
 #inputTask {
     float: left;
-    width: 80%;
+    width: 60%;
 }
 
 #addTask {
@@ -186,4 +192,9 @@ form#settingsForm {
 
 #hebdomadaires, #desapearTask{
     float: inherit;
+}
+
+#newTaskName{
+    float: inherit;
+    width: 60%;
 }
