@@ -11,12 +11,17 @@ ${SERVER}         localhost:8080
 ${BROWSER}        Firefox
 ${DELAY}          0
 ${TASKS URL}      http://${SERVER}/
+${LOGIN URL}      http://${SERVER}/login
 ${SETTINGS LISTE URL}      http://${SERVER}/listSettings/liste
 ${SETTINGS LISTE654 URL}      http://${SERVER}/listSettings/liste
 
 *** Keywords ***
 Open Browser To Tasks Page
     Open Browser    ${TASKS URL}    ${BROWSER}
+    Set Selenium Speed    ${DELAY}
+
+Open Browser To Login Page
+    Open Browser    ${LOGIN URL}    ${BROWSER}
     Set Selenium Speed    ${DELAY}
 
 Open Browser to SettingsListe Page
@@ -35,6 +40,18 @@ Go to SettingsListe654 Page
 Input List
     [Arguments]    ${name}
     Input Text    inputListe        ${name}
+
+Input Login
+    Input Text    login    test
+
+Input Password
+    Input Text    password    test
+
+Input Bad Login
+    Input Text    login    tesert
+
+Input Bad Password
+    Input Text    password    tesert
 
 Input Task
     [Arguments]    ${name}
@@ -87,3 +104,6 @@ Click Checkbox Hebdo
 
 Click Button Home
     Click Element   desapearTask
+
+Click Button Connect
+    Click Element   login_submit

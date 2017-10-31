@@ -7,7 +7,8 @@ debug(True)
 Controller to manage list todo
 """
 class ManageList:
-    def __init__(self, listService, checkParam, taskListFactory, todoService, redirect = redirect):
+    def __init__(self, session, listService, checkParam, taskListFactory, todoService, redirect = redirect):
+        self.session = session
         self.listService = listService
         self.checkParam = checkParam
         self.taskListFactory = taskListFactory
@@ -15,22 +16,29 @@ class ManageList:
         self.todoService = todoService
 
     def addList(self, listname):
-        if (self.checkParam.valid_name_list(listname)) :
-            self.listService.add_list(self.taskListFactory.createTaskList(listname))
-        self.redirect("/")
+        if self.session.isAuthenticated():
+            if (self.checkParam.valid_name_list(listname)) :
+                self.listService.add_list(self.taskListFactory.createTaskList(listname, self.session))
+            return self.redirect("/")
+        self.redirect("/login")
 
     def deleteList(self, name):
-        if (self.checkParam.valid_name_list(name)) :
-            self.listService.remove_list(name)
-            lst = self.todoService.getTasksByListname(name)
-            for t in lst:
-                self.todoService.removeTask(t.name())
-        self.redirect("/")
+        if self.session.isAuthenticated():
+            if (self.checkParam.valid_name_list(name)) :
+                self.listService.remove_list(name)
+                lst = self.todoService.getTasksByListname(name)
+                for t in lst:
+                    self.todoService.removeTask(t.name())
+            return self.redirect("/")
+        self.redirect("/login")
 
     def listSettings(self, listname):
-        if self.listService.list_exists_by_name(listname):
-            return self.getSettingsPage("", listname, "../css/index.css")
-        self.redirect("/")
+        if self.session.isAuthenticated():
+            if self.listService.list_exists_by_name(listname):
+                lst = self.listService.get_list_user()
+                return self.getSettingsPage("", listname, "../css/index.css", lst)
+            return self.redirect("/")
+        self.redirect("/login")
 
     def submitListSettings(self, name):
         if self.listService.list_exists_by_name(name):
@@ -40,6 +48,7 @@ class ManageList:
             hebdo = request.forms.get('hebdo')
             desapearHebdo = request.forms.get('desapearTaskHebdo')
             hourHebdo = request.forms.get('timeDisapearHebdo')
+            users = request.forms.getall('users')
 
             lst = self.listService.get_lst(name)
             if ((not desapear or self.checkParam.valid_hour(hour)) and (not desapearHebdo or self.checkParam.valid_hour(hourHebdo))):
@@ -49,7 +58,7 @@ class ManageList:
                 ho_ur = self.transformHourToString(hour)
                 ho_urHebdo = self.transformHourToString(hourHebdo)
                 
-                lst.set_parameters(desa_pear, ho_ur, he_bdo, desa_pearHebdo, ho_urHebdo)
+                lst.set_parameters(desa_pear, ho_ur, he_bdo, desa_pearHebdo, ho_urHebdo, users)
                 self.listService.save_settings(lst)
                 status = 'Enregistré'
             text_desapear = ''
@@ -77,7 +86,7 @@ class ManageList:
             return ''
         return hour
 
-    def getSettingsPage(self, status, listname, css):
+    def getSettingsPage(self, status, listname, css, users):
         lst = self.listService.get_lst(listname)
         desapear = ''
         hebdo = ''
@@ -90,5 +99,10 @@ class ManageList:
             desapearHebdo = 'checked'
         hour = lst.hour()
         hourHebdo = lst.hourHebdo()
-        output = template('src/web/template/settingsList.tpl', list=listname, desapear=desapear, hour=hour, hebdo=hebdo, desapearHebdo=desapearHebdo, hourHebdo=hourHebdo, status= status, css=css)
+        usersInList = self.listService.users_by_list_name(listname)
+        notin = []
+        for u in users :
+            if not u in usersInList:
+                notin.append(u)
+        output = template('src/web/template/settingsList.tpl', list=listname, desapear=desapear, hour=hour, hebdo=hebdo, desapearHebdo=desapearHebdo, hourHebdo=hourHebdo, status= status, css=css, users = usersInList, notin = notin)
         return output

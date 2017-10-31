@@ -12,35 +12,40 @@ ${NEWTASKNAME}    Changer le nom de la tâche
 ${UPDATETASK}     Do homework
 *** Test Cases ***
 Add a task
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     When user write a new "${TASK}"
     And click the button to add a task
     Then Task List Should Contain "${TASK}"
     [Teardown]    Close Browser
 
 Check a task
-  Given browser is opened to tasks page
+  Given user connected
+  And browser is opened to tasks page
   And task list contain "${CHECKTASK}"
   When I click the checkbox of task "${CHECKTASK}"
   Then the "${CHECKTASK}" should be done
   [Teardown]    Close Browser
 
 Remove a task
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     And task list contain "${REMOVETASK}"
     When I click on delete of "${REMOVETASK}"
     Then Page Should Not Contain   ${REMOVETASK}
     [Teardown]    Close Browser
 
 Update a task
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     And task list contain "${UPDATETASK}"
     When I click on update of "${UPDATETASK}"
     Then Page Should Contain   ${NEWTASKNAME}
     [Teardown]    Close Browser
 
 Update a task change name
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     And task list contain "${UPDATETASK}"
     And I click on update of "${UPDATETASK}"
     And Page Should Contain   ${NEWTASKNAME}
@@ -50,6 +55,13 @@ Update a task change name
     [Teardown]    Close Browser
 
 *** Keywords ***
+User Connected
+    Open Browser To Login Page
+    Input Login 
+    Input Password
+    Click Button Connect
+    [Teardown]    Close Browser
+
 the "${CHECKTASK}" should be done
   Checkbox Should Be Selected   done${CHECKTASK}
 

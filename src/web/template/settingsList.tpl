@@ -13,6 +13,18 @@
   </div>
   <div>
   <form onSubmit="this.action = 'settingsForm/{{list}}'" id="settingsForm" method="post">
+
+     Sélectionner la liste des utilisateurs
+        </br>
+      <select id="users" name="users" multiple>
+        %for row in users:
+          <option selected value="{{row}}"/>{{row}}</option>
+        %end
+        %for row in notin:
+          <option value="{{row}}"/>{{row}}</option>
+        %end
+      </select></br></br>
+
     <input id="hebdo" type="checkbox" value="hebdo" name="hebdo" {{hebdo}}/> <label>Tâches hebdomadaires </label>
     </br>
     <input id="desapearTaskHebdo" type="checkbox" value="desapearHebdo" name="desapearTaskHebdo" {{desapearHebdo}}/> <label>Faire disparaître les tâches hebdomadaires</label>

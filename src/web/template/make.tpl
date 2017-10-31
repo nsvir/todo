@@ -46,6 +46,7 @@
         {{task.listname()}} - {{task.name()}}
         <a href="removeTask/{{task.name()}}"><span id="remove{{task.name()}}" class="close">x</span></a>
         <a href="updateTask/{{task.name()}}"><span id="update{{task.name()}}" class="edit">✎</span></a>
+        <a href="takeTask/{{task.name()}}"><span id="get{{task.name()}}" class="get">°</span></a>
     </li>
   </ul>
 %end

@@ -4,11 +4,12 @@ Task represent a task
 
 class Task():
 
-    def __init__(self, name, listname, isDone = False, visible=True):
+    def __init__(self, name, listname, isDone = False, visible=True, login=''):
         self._name = name
         self._done = isDone
         self._listname = listname
         self._visible = visible
+        self.__login = login
 
     def setIsDone(self):
         self._done = True
@@ -33,3 +34,9 @@ class Task():
 
     def is_visible(self):
         return self._visible
+
+    def setLogin(self, login):
+        self.__login = login
+
+    def login(self):
+        return self.__login

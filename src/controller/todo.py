@@ -8,9 +8,10 @@ Controller to redirect todo requests
 """
 class TodoApp():
 
-    def __init__(self, listTodoService, \
+    def __init__(self, session, listTodoService, \
                 todoService, template = template, \
                 request = request, redirect = redirect):
+        self.session = session
         self.service = todoService
         self.template = template
         self.listTodoService = listTodoService
@@ -18,16 +19,18 @@ class TodoApp():
         self.redirect = redirect
 
     def home(self):
-        res = self.listTodoService.remove_desable_lists()
-        for tasklist in res:
-            tasks = self.service.getTasksByListname(tasklist)
-            for t in tasks:
-                self.service.removeTask(t.name())
-        self.service.remove_desable_tasks(self.listTodoService.get_all_lst())
-        tasks = self.service.getVisibleTasks()
-        lists = self.listTodoService.get_list_name()
-        output = self.template('src/web/template/make.tpl', tasks=tasks, lists=lists, list=None)
-        return output
+        if self.session.isAuthenticated():
+            res = self.listTodoService.remove_desable_lists()
+            for tasklist in res:
+                tasks = self.service.getTasksByListname(tasklist)
+                for t in tasks:
+                    self.service.removeTask(t.name())
+            self.service.remove_desable_tasks(self.listTodoService.get_all_lst())
+            tasks = self.service.getVisibleTasks()
+            lists = self.listTodoService.get_list_name(self.session)
+            output = self.template('src/web/template/make.tpl', tasks=tasks, lists=lists, list=None)
+            return output
+        self.redirect('/login')
 
     def addTask(self, task, listname):
         self.service.addTask(task ,listname)
@@ -42,6 +45,10 @@ class TodoApp():
 
     def submitUpdateTask(self, oldname, newname):
         self.service.updateTask(oldname, newname)
+        self.redirect("/")
+
+    def takeTask(self, task):
+        self.service.takeTask(task, self.session.login())
         self.redirect("/")
 
     def checkTask(self, task):

@@ -25,6 +25,7 @@ class TodoService():
     def removeTask(self, taskName):
         taskObject = self.getTask(taskName)
         self.todoDatabase.delete(taskObject)
+        print('here')
         self.tasks.remove(taskObject)
 
     def checkTask(self, taskName):
@@ -79,3 +80,9 @@ class TodoService():
         for task in self.tasks:
             if task.listname() == listname:
                 task.visible()
+
+    def takeTask(self, taskname, login):
+        task = self.getTask(taskname)
+        if not task is None: 
+            task.setLogin(login)
+            self.todoDatabase.takeTask(task)

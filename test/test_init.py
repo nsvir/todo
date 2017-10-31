@@ -10,9 +10,11 @@ class TestAddListTodoController(unittest.TestCase):
         listRepository = mock()
         taskListFactory = mock()
         serviceTodo = mock()
-        init = Init(listTodoService, listRepository, taskListFactory, serviceTodo)
+        userService = mock()
+        init = Init(listTodoService, listRepository, userService, taskListFactory, serviceTodo)
         
         init.initTodoList(any())
         verify(listTodoService).initTodoList(any(), any())
         verify(listTodoService).remove_desable_lists()
         verify(serviceTodo).remove_desable_tasks(any())
+        verify(userService).init_users()

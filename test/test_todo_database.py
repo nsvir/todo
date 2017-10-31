@@ -16,9 +16,10 @@ class TestTodoDatabase(unittest.TestCase):
         mockito.when(objectTaskToAdd).done().thenReturn(False)
         mockito.when(objectTaskToAdd).listname().thenReturn("lst")
         mockito.when(objectTaskToAdd).is_visible().thenReturn(True)
+        mockito.when(objectTaskToAdd).login().thenReturn('login')
 
         TodoDatabase(connection).add(objectTaskToAdd)
-        connection.execute.assert_called_once_with("INSERT into tasks values (?, ?, ?, ?)", ("me", False, "lst", True))
+        connection.execute.assert_called_once_with("INSERT into tasks values (?, ?, ?, ?, ?)", ("me", False, "lst", True, 'login'))
         connection.commit.assert_called_once()
 
     def test_update_task_database(self):
@@ -40,13 +41,14 @@ class TestTodoDatabase(unittest.TestCase):
 
     def test_retrieve_task_database(self):
         connection = Mock()
-        mockito.when(connection).execute('SELECT name, isDone, listname, visible FROM tasks').thenReturn([["me", True, "list", True]])
+        mockito.when(connection).execute('SELECT name, isDone, listname, visible, login FROM tasks').thenReturn([["me", True, "list", True, 'login']])
         listResult = TodoDatabase(connection).retrieve()
         task = listResult[0]
         self.assertEquals(task.name(), "me")
         self.assertTrue(task.done())
         self.assertEquals(task.listname(), "list")
         self.assertTrue(task.is_visible())
+        self.assertEquals('login', task.login())
 
     def test_delete_task_databse(self):
         connection = Mock()
@@ -67,3 +69,12 @@ class TestTodoDatabase(unittest.TestCase):
         connection.execute.assert_called_once_with("UPDATE tasks SET visible = 'TRUE' WHERE listname = 'name'")
         connection.commit.assert_called_once()
 
+    def test_update_login_task_database(self):
+        connection = Mock()
+        objectTaskToUpdate = mockito.mock()
+        mockito.when(objectTaskToUpdate).name().thenReturn("me")
+        mockito.when(objectTaskToUpdate).login().thenReturn("login")
+        TodoDatabase(connection).takeTask(objectTaskToUpdate)
+        connection.execute.assert_called_once_with("UPDATE tasks SET login = ? WHERE name = ?", \
+                                                    ("login", "me"))
+        connection.commit.assert_called_once()

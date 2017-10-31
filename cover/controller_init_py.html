@@ -30,8 +30,8 @@
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
 
         <h2 class="stats">
-            13 statements &nbsp;
-            <span class="run hide_run shortkey_r button_toggle_run">13 run</span>
+            15 statements &nbsp;
+            <span class="run hide_run shortkey_r button_toggle_run">15 run</span>
             <span class="mis shortkey_m button_toggle_mis">0 missing</span>
             <span class="exc shortkey_x button_toggle_exc">0 excluded</span>
 
@@ -83,11 +83,13 @@
 <p id="n12" class="stm run hide_run"><a href="#n12">12</a></p>
 <p id="n13" class="stm run hide_run"><a href="#n13">13</a></p>
 <p id="n14" class="stm run hide_run"><a href="#n14">14</a></p>
-<p id="n15" class="pln"><a href="#n15">15</a></p>
-<p id="n16" class="stm run hide_run"><a href="#n16">16</a></p>
+<p id="n15" class="stm run hide_run"><a href="#n15">15</a></p>
+<p id="n16" class="pln"><a href="#n16">16</a></p>
 <p id="n17" class="stm run hide_run"><a href="#n17">17</a></p>
 <p id="n18" class="stm run hide_run"><a href="#n18">18</a></p>
 <p id="n19" class="stm run hide_run"><a href="#n19">19</a></p>
+<p id="n20" class="stm run hide_run"><a href="#n20">20</a></p>
+<p id="n21" class="stm run hide_run"><a href="#n21">21</a></p>
 
             </td>
             <td class="text">
@@ -100,16 +102,18 @@
 <p id="t7" class="pln"><span class="str">Controller to manage list todo</span><span class="strut">&nbsp;</span></p>
 <p id="t8" class="pln"><span class="str">"""</span><span class="strut">&nbsp;</span></p>
 <p id="t9" class="stm run hide_run"><span class="key">class</span> <span class="nam">Init</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t10" class="stm run hide_run">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listService</span><span class="op">,</span> <span class="nam">listRepository</span><span class="op">,</span> <span class="nam">taskListFactory</span><span class="op">,</span> <span class="nam">todoService</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t10" class="stm run hide_run">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listService</span><span class="op">,</span> <span class="nam">listRepository</span><span class="op">,</span> <span class="nam">userService</span><span class="op">,</span> <span class="nam">taskListFactory</span><span class="op">,</span> <span class="nam">todoService</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t11" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span> <span class="op">=</span> <span class="nam">listService</span><span class="strut">&nbsp;</span></p>
 <p id="t12" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listRepository</span> <span class="op">=</span> <span class="nam">listRepository</span><span class="strut">&nbsp;</span></p>
 <p id="t13" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">taskListFactory</span> <span class="op">=</span> <span class="nam">taskListFactory</span><span class="strut">&nbsp;</span></p>
 <p id="t14" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">todoService</span> <span class="op">=</span> <span class="nam">todoService</span><span class="strut">&nbsp;</span></p>
-<p id="t15" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t16" class="stm run hide_run">    <span class="key">def</span> <span class="nam">initTodoList</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listTodo</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t17" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">initTodoList</span><span class="op">(</span><span class="nam">listTodo</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">taskListFactory</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t18" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">remove_desable_lists</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t19" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">todoService</span><span class="op">.</span><span class="nam">remove_desable_tasks</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">get_all_lst</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t15" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">userService</span> <span class="op">=</span> <span class="nam">userService</span><span class="strut">&nbsp;</span></p>
+<p id="t16" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t17" class="stm run hide_run">    <span class="key">def</span> <span class="nam">initTodoList</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">listTodo</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t18" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">initTodoList</span><span class="op">(</span><span class="nam">listTodo</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">taskListFactory</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t19" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">remove_desable_lists</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t20" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">todoService</span><span class="op">.</span><span class="nam">remove_desable_tasks</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">listService</span><span class="op">.</span><span class="nam">get_all_lst</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t21" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">userService</span><span class="op">.</span><span class="nam">init_users</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -120,7 +124,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.3.4</a>,
-            created at 2017-10-16 01:23
+            created at 2017-10-31 14:37
         </p>
     </div>
 </div>

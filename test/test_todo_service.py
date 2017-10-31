@@ -367,3 +367,33 @@ class TestUpdateTask(unittest.TestCase):
         todoService.updateTask('name', 'new')
 
         mockito.verify(database, mockito.never).update_with_old_name(mockito.any(), mockito.any())
+
+class TestTakeTask(unittest.TestCase):
+
+    def test_take_task(self):
+        taskName = "name"
+        lst = "lstname"
+        database = mockito.mock()
+        fabrique = mockito.mock()
+        task = mockito.mock()
+
+        mockito.when(database).retrieve().thenReturn([])
+        mockito.when(fabrique).create(mockito.any(), mockito.any()).thenReturn(task)
+        todoService = TodoService(database, fabrique)
+        todoService.addTask(taskName, lst)
+        mockito.when(task).name().thenReturn('name')
+        todoService.takeTask('name', 'login')
+
+        mockito.verify(database).takeTask(mockito.any())
+
+    def test_update_none_task(self):
+        taskName = "name"
+        lst = "lstname"
+        database = mockito.mock()
+        fabrique = mockito.mock()
+        mockito.when(database).retrieve().thenReturn([])
+
+        todoService = TodoService(database, fabrique)
+        todoService.takeTask('name', 'login')
+
+        mockito.verify(database, mockito.never).takeTask(mockito.any())

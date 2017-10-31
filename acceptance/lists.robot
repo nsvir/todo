@@ -6,26 +6,30 @@ Resource          resource.robot
 
 *** Test Cases ***
 Add a list with a good name
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     When user write a new list "mode"
     Then List Should Contain "mode"
     [Teardown]    Close Browser
 
 Add a list with a bad name
-    Given browser is opened to tasks page
+    Given user connected
+    And browser is opened to tasks page
     When user write a new list "<scr*$>"
     Then List Should Not Contain "<scr*$>"
     [Teardown]    Close Browser
 
 Want configure a list and submit without change
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     When user click on settings button of list "liste"
     Then browser is opened to settings page of list "liste"
     [Teardown]    Close Browser
 
 Configure a list
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     When user submit setting form
@@ -33,7 +37,8 @@ Configure a list
     [Teardown]    Close Browser
 
 Configure a list and return to home page
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     When user click on home button
@@ -41,7 +46,8 @@ Configure a list and return to home page
     [Teardown]    Close Browser
 
 Configure a list with only hour input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     And user write on timeDeseaper "12:00"
@@ -50,7 +56,8 @@ Configure a list with only hour input
     [Teardown]    Close Browser
 
 Configure a list with only hour hebdo input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     And user write on timeDeseaperHebdo "12:00"
@@ -59,7 +66,8 @@ Configure a list with only hour hebdo input
     [Teardown]    Close Browser
 
 Configure a list with check and hour input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     And user click on disapear checkbox
@@ -69,7 +77,8 @@ Configure a list with check and hour input
     [Teardown]    Close Browser
 
 Configure a list with checkhebdo and hourhebdo input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     And user click on disapearHebdo checkbox
@@ -79,7 +88,8 @@ Configure a list with checkhebdo and hourhebdo input
     [Teardown]    Close Browser
 
 Configure a list with checkhebdo and hourhebdo input and hebdo input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste" already created
     And user click on settings button of list "liste"
     And user click on hebdo checkbox
@@ -90,7 +100,8 @@ Configure a list with checkhebdo and hourhebdo input and hebdo input
     [Teardown]    Close Browser
 
 Configure a list with check and bad hour input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste654" already created
     And user click on settings button of list "liste654"
     And user click on disapear checkbox
@@ -100,7 +111,8 @@ Configure a list with check and bad hour input
     [Teardown]    Close Browser
 
 Configure a list with check and bad hour hebdo input
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "liste654" already created
     And user click on settings button of list "liste654"
     And user click on disapearHebdo checkbox
@@ -110,14 +122,16 @@ Configure a list with check and bad hour hebdo input
     [Teardown]    Close Browser
 
 Remove a list
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "deletelistetest" already created
     When user click on delete button of list "deletelistetest"
     Then List Should Not Contain "deletelistetest"
     [Teardown]    Close Browser
 
 Remove a list by time
-    Given browser is opened to tasks page 
+    Given user connected
+    And browser is opened to tasks page 
     And list "deletelistebytimetest" already created
     And user click on settings button of list "deletelistebytimetest"
     And user click on disapear checkbox
@@ -128,6 +142,13 @@ Remove a list by time
     [Teardown]    Close Browser
 
 *** Keywords ***
+User Connected
+    Open Browser To Login Page
+    Input Login 
+    Input Password
+    Click Button Connect
+    [Teardown]    Close Browser
+
 Browser is opened to tasks page
     Open Browser To Tasks Page
 
