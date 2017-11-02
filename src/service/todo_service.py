@@ -24,8 +24,9 @@ class TodoService():
 
     def removeTask(self, taskName):
         taskObject = self.getTask(taskName)
-        self.todoDatabase.delete(taskObject)
-        self.tasks.remove(taskObject)
+        if not taskObject is None:
+            self.todoDatabase.delete(taskObject)
+            self.tasks.remove(taskObject)
 
     def checkTask(self, taskName):
         task = self.getTask(taskName)
