@@ -1,0 +1,62 @@
+1. Test du bon déroulement
+
+Utilisateurs max: 2
+Min wait: 1 seconde
+Max wait: 5 secondes
+Apparition par minute: 2
+
+Resultat 1: 32% d'echecs
+Interprétation: C'est énorme et anormale pour des paramètres aussi simple.
+
+Après quelques recherches il manquait un cas de test.
+On relance le test:
+
+Résultat 2: 0% d'échecs
+Interprétation: L'application est prête à être testée!
+
+2. La montée en charge
+
+Le but de se test est de savoir à partir de combien d'utilisateur l'application ne fait plus ce qu'on souhaite.
+- Nous souhaitons que l'application ne dépasse pas les 10% d'echecs.
+- Le temps par requête n'a pas de valeur pour nous donc ne sera pas évalué.
+
+### Test 1
+
+Min wait: 1 seconde
+Max wait: 5 secondes
+Utilisateur max: 500
+Apparition par minute: 10
+Max atteint en 50 secs
+
+Résultat: Sur 1685 requêtes: 1 echec (0%) à 26 requête par secondes.
+Interprétation: l'application gère au minimum 500 utilisateur à 30 requêtes par secondes
+
+### Test 2
+
+Min wait: 1 seconde
+Max wait: 5 secondes
+Utilisateur max: 50000
+Apparition par minute: 1000
+Max atteint en 50 secs
+
+Resultat: Locust crache des erreurs..
+Interprétation: Locust ne gère par l'apparition de 1000 utilisateurs par secondes
+
+### Test 2.1
+
+Min wait: 1 seconde
+Max wait: 5 secondes
+Utilisateur max: 50000
+Apparition par minute: 100
+Max atteint en 500 secs
+
+Resultats: Locust crache des erreurs à partir de 1000 utilisateurs connecté
+Interpreation: Locust n'aurait pas suffisament d'espace mémoire ?
+
+### Test 2.2
+
+Min wait: 1 seconde
+Max wait: 5 secondes
+Utilisateur max: 1000
+Apparition par minute: 100
+Max atteint en 15 secs

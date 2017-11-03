@@ -20,7 +20,7 @@ class TodoDatabase:
         self.connection.commit()
 
     def delete(self, taskObject):
-        self.connection.execute("DELETE FROM tasks WHERE name = '"+ (taskObject.name())+ "'")
+        self.connection.execute("DELETE FROM tasks WHERE name = ?", (taskObject.name(),))
         self.connection.commit()
 
     def retrieve(self):
@@ -30,9 +30,9 @@ class TodoDatabase:
         return result
 
     def desable_tasks_by_listname(self, listname):
-        self.connection.execute("UPDATE tasks SET visible = 'FALSE' WHERE listname = '"+ listname+ "'")
+        self.connection.execute("UPDATE tasks SET visible = 'FALSE' WHERE listname = ?", (listname,))
         self.connection.commit()
 
     def enable_tasks_by_listname(self, listname):
-        self.connection.execute("UPDATE tasks SET visible = 'TRUE' WHERE listname = '"+ listname+ "'")
+        self.connection.execute("UPDATE tasks SET visible = 'TRUE' WHERE listname = ?", (listname,))
         self.connection.commit()
