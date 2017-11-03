@@ -26,4 +26,9 @@ CREATE table users (
     password char(50)
 );
 
+CREATE table userlists(
+	listname char(50),
+	login char(50)
+);
+
 insert into users values('test', 'test');
