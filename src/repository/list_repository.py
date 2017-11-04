@@ -48,7 +48,7 @@ class ListRepository:
 
     def getAllUsersByListName(self, listname):
         cur = self.connection.cursor()
-        cur.execute("SELECT login from userlists where listname = '" + listname + "'")
+        cur.execute("SELECT distinct(login) from userlists where listname = '" + listname + "'")
         rows = cur.fetchall()
         lst = []
         for row in rows:
